@@ -55,11 +55,11 @@ h1,h2,h3,h4,h5,h6,p,span,a,li,div,label,strong,em,b{color:var(--gold);font-weigh
 .hero-frame{position:absolute;inset:10px;border:2px solid var(--gd);border-radius:6px;pointer-events:none;z-index:1;}
 .hero-frame::before{content:'';position:absolute;inset:5px;border:1px solid rgba(212,168,53,0.25);border-radius:3px;}
 .hero-inner{position:relative;z-index:2;text-align:center;animation:fadeUp 1s ease;}
-.hero-img{width:min(92%,650px);border-radius:10px;border:3px solid var(--gold);box-shadow:0 0 40px rgba(212,168,53,0.25);margin-bottom:18px;}
+.hero-img{width:min(98%,820px);border-radius:10px;border:3px solid var(--gold);box-shadow:0 0 40px rgba(212,168,53,0.25);margin-bottom:18px;}
 .hero-title{font-family:'Aref Ruqaa',serif;font-size:clamp(1.9rem,6.5vw,3.5rem);color:var(--gs);text-shadow:0 0 20px rgba(255,215,0,0.35),0 3px 6px rgba(0,0,0,0.8);margin-bottom:8px;letter-spacing:2px;}
-.hero-sub{font-family:'Aref Ruqaa',serif;font-size:clamp(1rem,3vw,1.4rem);color:var(--gold);opacity:.9;margin-bottom:6px;line-height:2;}
+.hero-sub{font-family:'Aref Ruqaa',serif;font-size:clamp(1.1rem,3.5vw,1.55rem);color:var(--gold);opacity:.9;margin-bottom:6px;line-height:2;}
 .hero-div{width:160px;height:2px;margin:10px auto 16px;background:linear-gradient(90deg,transparent,var(--gs),transparent);}
-.hero-badge{display:inline-block;background:linear-gradient(135deg,var(--gd),var(--gs));color:var(--bk);font-weight:900;font-size:clamp(.82rem,2.5vw,1rem);padding:8px 26px;border-radius:40px;margin-bottom:14px;box-shadow:0 4px 20px rgba(212,168,53,0.35);letter-spacing:1px;}
+.hero-badge{display:inline-block;background:linear-gradient(135deg,var(--gd),var(--gs));color:var(--bk);font-weight:900;font-size:clamp(.92rem,2.8vw,1.12rem);padding:9px 28px;border-radius:40px;margin-bottom:14px;box-shadow:0 4px 20px rgba(212,168,53,0.35);letter-spacing:1px;}
 .hero-phone{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff!important;font-weight:900;font-size:clamp(1rem,3vw,1.2rem);padding:13px 34px;border-radius:50px;text-decoration:none;direction:ltr;box-shadow:0 4px 24px rgba(37,211,102,0.35);transition:all .3s;animation:pulse-g 2.2s infinite;}
 .hero-phone:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(37,211,102,0.5);}
 @keyframes pulse-g{0%,100%{box-shadow:0 4px 24px rgba(37,211,102,0.35)}50%{box-shadow:0 4px 35px rgba(37,211,102,0.6)}}
@@ -81,9 +81,9 @@ h1,h2,h3,h4,h5,h6,p,span,a,li,div,label,strong,em,b{color:var(--gold);font-weigh
 .feat-card{max-width:860px;margin:0 auto;background:linear-gradient(150deg,var(--bk2),#0a0a0a);border:2px solid var(--gold);border-radius:16px;overflow:hidden;box-shadow:0 0 50px rgba(212,168,53,0.18),0 20px 60px rgba(0,0,0,0.5);animation:fadeUp .8s ease;}
 .feat-card img{width:100%;display:block;border-bottom:2px solid var(--gd);}
 .feat-body{padding:26px 18px;text-align:center;}
-.feat-badge{display:inline-block;background:linear-gradient(135deg,var(--gd),var(--gs));color:var(--bk);font-weight:900;font-size:.8rem;padding:6px 20px;border-radius:30px;margin-bottom:12px;letter-spacing:1px;}
-.feat-body h2{font-family:'Aref Ruqaa',serif;font-size:clamp(1.3rem,4vw,2rem);color:var(--gs);margin-bottom:12px;text-shadow:0 0 10px rgba(255,215,0,0.18);}
-.feat-body p{font-size:clamp(.9rem,2.5vw,1.06rem);color:var(--gold);line-height:2.1;max-width:660px;margin:0 auto 16px;}
+.feat-badge{display:inline-block;background:linear-gradient(135deg,var(--gd),var(--gs));color:var(--bk);font-weight:900;font-size:.92rem;padding:7px 22px;border-radius:30px;margin-bottom:12px;letter-spacing:1px;}
+.feat-body h2{font-family:'Aref Ruqaa',serif;font-size:clamp(1.4rem,4.5vw,2.2rem);color:var(--gs);margin-bottom:12px;text-shadow:0 0 10px rgba(255,215,0,0.18);}
+.feat-body p{font-size:clamp(1rem,2.8vw,1.18rem);color:var(--gold);line-height:2.1;max-width:660px;margin:0 auto 16px;}
 .feat-cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff!important;font-weight:900;font-size:1.02rem;padding:13px 34px;border-radius:50px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.3);transition:all .3s;}
 .feat-cta:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(37,211,102,0.5);}
 
@@ -106,8 +106,8 @@ h1,h2,h3,h4,h5,h6,p,span,a,li,div,label,strong,em,b{color:var(--gold);font-weigh
 .srv-card img{width:100%;aspect-ratio:16/9.5;object-fit:cover;display:block;border-bottom:2px solid var(--gd);transition:transform .5s;}
 .srv-card:hover img{transform:scale(1.04);}
 .srv-body{padding:16px 14px 18px;text-align:center;position:relative;z-index:1;}
-.srv-body h3{font-family:'Aref Ruqaa',serif;font-size:clamp(1.1rem,3vw,1.35rem);color:var(--gs);margin-bottom:8px;}
-.srv-body p{font-size:.9rem;color:var(--gold);line-height:1.9;opacity:.9;margin-bottom:10px;}
+.srv-body h3{font-family:'Aref Ruqaa',serif;font-size:clamp(1.2rem,3.5vw,1.5rem);color:var(--gs);margin-bottom:8px;}
+.srv-body p{font-size:1.02rem;color:var(--gold);line-height:1.9;opacity:.9;margin-bottom:10px;}
 .srv-more{display:inline-flex;align-items:center;gap:6px;color:var(--gs)!important;font-size:.9rem;text-decoration:none;background:rgba(212,168,53,0.1);padding:8px 20px;border-radius:30px;border:1px solid rgba(212,168,53,0.3);transition:all .3s;cursor:pointer;}
 .srv-more:hover{background:rgba(212,168,53,0.2);border-color:var(--gold);}
 
@@ -115,10 +115,10 @@ h1,h2,h3,h4,h5,h6,p,span,a,li,div,label,strong,em,b{color:var(--gold);font-weigh
 .sdetail{max-width:860px;margin:0 auto;padding:10px 16px 50px;}
 .sdetail-img{width:100%;border-radius:14px;border:2px solid var(--gold);box-shadow:0 0 30px rgba(212,168,53,0.2);margin-bottom:24px;}
 .sdetail-box{background:linear-gradient(150deg,var(--bk2),#090909);border:1.5px solid rgba(212,168,53,0.35);border-radius:14px;padding:28px 20px;margin-bottom:24px;}
-.sdetail-box h2{font-family:'Aref Ruqaa',serif;font-size:clamp(1.4rem,4.5vw,2.2rem);color:var(--gs);text-align:center;margin-bottom:16px;text-shadow:0 0 10px rgba(255,215,0,0.15);}
-.sdetail-box p{font-size:clamp(.92rem,2.5vw,1.06rem);color:var(--gold);line-height:2.2;text-align:center;margin-bottom:14px;}
+.sdetail-box h2{font-family:'Aref Ruqaa',serif;font-size:clamp(1.5rem,5vw,2.4rem);color:var(--gs);text-align:center;margin-bottom:16px;text-shadow:0 0 10px rgba(255,215,0,0.15);}
+.sdetail-box p{font-size:clamp(1rem,2.8vw,1.16rem);color:var(--gold);line-height:2.2;text-align:center;margin-bottom:14px;}
 .sdetail-box ul{list-style:none;padding:0;margin:16px auto;max-width:600px;}
-.sdetail-box ul li{padding:10px 0;border-bottom:1px solid rgba(212,168,53,0.15);font-size:clamp(.9rem,2.5vw,1rem);color:var(--gold);line-height:1.9;text-align:right;}
+.sdetail-box ul li{padding:10px 0;border-bottom:1px solid rgba(212,168,53,0.15);font-size:clamp(1rem,2.8vw,1.12rem);color:var(--gold);line-height:1.9;text-align:right;}
 .sdetail-box ul li i{color:var(--gs);margin-left:8px;}
 .sdetail-cta{text-align:center;margin:20px 0;}
 .sdetail-cta a{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff!important;font-weight:900;font-size:clamp(1rem,3vw,1.15rem);padding:15px 40px;border-radius:50px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.3);transition:all .3s;}
@@ -131,16 +131,16 @@ h1,h2,h3,h4,h5,h6,p,span,a,li,div,label,strong,em,b{color:var(--gold);font-weigh
 .features{max-width:700px;margin:0 auto 28px;padding:0 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,195px),1fr));gap:12px;}
 .feat-item{background:rgba(212,168,53,0.05);border:1px solid rgba(212,168,53,0.25);border-radius:12px;padding:14px 12px;text-align:center;transition:border-color .3s;}
 .feat-item:hover{border-color:var(--gold);}
-.feat-item i{font-size:1.5rem;color:var(--gs);margin-bottom:6px;display:block;}
-.feat-item span{font-size:.86rem;color:var(--gold);line-height:1.7;}
+.feat-item i{font-size:1.6rem;color:var(--gs);margin-bottom:6px;display:block;}
+.feat-item span{font-size:.96rem;color:var(--gold);line-height:1.7;}
 
 /* TESTIMONIALS */
 .testi-grid{max-width:900px;margin:0 auto;padding:0 16px 44px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:18px;}
 .testi-card{background:linear-gradient(150deg,var(--bk2),#090909);border:1.5px solid rgba(212,168,53,0.3);border-radius:14px;padding:20px 16px;text-align:center;transition:border-color .3s;}
 .testi-card:hover{border-color:var(--gold);}
 .testi-stars{color:var(--gs);font-size:1rem;margin-bottom:8px;letter-spacing:3px;}
-.testi-card p{font-size:.9rem;line-height:2;color:var(--gold);margin-bottom:10px;}
-.testi-name{font-family:'Aref Ruqaa',serif;font-size:.95rem;color:var(--gs);opacity:.8;}
+.testi-card p{font-size:1.02rem;line-height:2;color:var(--gold);margin-bottom:10px;}
+.testi-name{font-family:'Aref Ruqaa',serif;font-size:1.04rem;color:var(--gs);opacity:.8;}
 
 /* CONTACT */
 .contact{padding:28px 16px 70px;text-align:center;}
@@ -338,6 +338,77 @@ h1,h2,h3,h4,h5,h6,p,span,a,li,div,label,strong,em,b{color:var(--gold);font-weigh
     <div class="feat-item"><i class="fas fa-users"></i><span>الإصلاح بين الأزواج</span></div>
     <div class="feat-item"><i class="fas fa-star"></i><span>نتائج مضمونة بإذن الله</span></div>
   </div>
+
+  <div class="stitle"><h2 class="shimmer">جميع خدماتنا</h2><div class="stitle-line"></div></div>
+  <section class="srv-sec">
+    <div class="srv-grid">
+
+      <div class="srv-card" onclick="showPage('srv-jalb')">
+        <div class="srv-imgw"><img src="https://pfst.cf2.poecdn.net/base/image/c4fa18ecef2f67780615a3fb407cb7e315260c4155f48d0a982f93ed4a62510f?w=1624&amp;h=979" alt="جلب الحبيب الغائب"></div>
+        <div class="srv-body">
+          <h3>جلب الحبيب الغائب</h3>
+          <p>جلب الحبيب مهما كان بعيداً وإعادته خاضعاً محباً — نتائج سريعة بإذن الله</p>
+          <span class="srv-more"><i class="fas fa-arrow-left"></i> التفاصيل</span>
+        </div>
+      </div>
+
+      <div class="srv-card" onclick="showPage('srv-sihr')">
+        <div class="srv-imgw"><img src="https://pfst.cf2.poecdn.net/base/image/17c73afa19091018f176c0a3f3ddebb7840b2c4624b7adbf92b1471d1ea53138?w=1624&amp;h=979" alt="إبطال السحر"></div>
+        <div class="srv-body">
+          <h3>إبطال السحر السفلي والأسود</h3>
+          <p>كشف وإبطال جميع أنواع السحر بأعمال روحانية قوية — تخلّص نهائياً</p>
+          <span class="srv-more"><i class="fas fa-arrow-left"></i> التفاصيل</span>
+        </div>
+      </div>
+
+      <div class="srv-card" onclick="showPage('srv-zawj')">
+        <div class="srv-imgw"><img src="https://pfst.cf2.poecdn.net/base/image/e329d6df91746bae4a06910eb8fb51c730f840e7db3d110ae98d76f98ec4ba93?w=1624&amp;h=979" alt="الإصلاح بين الزوجين"></div>
+        <div class="srv-body">
+          <h3>الإصلاح بين الزوجين</h3>
+          <p>إعادة المحبة والمودة بين الأزواج وحل المشاكل الأسرية</p>
+          <span class="srv-more"><i class="fas fa-arrow-left"></i> التفاصيل</span>
+        </div>
+      </div>
+
+      <div class="srv-card" onclick="showPage('srv-qareen')">
+        <div class="srv-imgw"><img src="https://pfst.cf2.poecdn.net/base/image/016d45f8fe5eb810c12a6134ab328ddd5682ad1d7c97c37dd4178766284b6a69?w=1624&amp;h=979" alt="السيطرة على القرين"></div>
+        <div class="srv-body">
+          <h3>السيطرة على القرين وإخضاع الحبيب</h3>
+          <p>أعمال روحانية لإخضاع الحبيب العنيد — نتائج مضمونة</p>
+          <span class="srv-more"><i class="fas fa-arrow-left"></i> التفاصيل</span>
+        </div>
+      </div>
+
+      <div class="srv-card" onclick="showPage('srv-khasm')">
+        <div class="srv-imgw"><img src="https://pfst.cf2.poecdn.net/base/image/0b715b40170c2d1a6870ba6bdfc9b78d670b9a54e1a9e4cd1b8420e6c0c3567f?w=1624&amp;h=979" alt="الإصلاح بين المتخاصمين"></div>
+        <div class="srv-body">
+          <h3>الإصلاح بين المتخاصمين</h3>
+          <p>إعادة الوصال والمحبة بين المتخاصمين والأهل</p>
+          <span class="srv-more"><i class="fas fa-arrow-left"></i> التفاصيل</span>
+        </div>
+      </div>
+
+      <div class="srv-card" onclick="showPage('srv-shamaa')">
+        <div class="srv-imgw"><img src="https://pfst.cf2.poecdn.net/base/image/79df49159483d86884807dd6f71fa24f7123bf660d5f57ef36dd04667b31b0b0?w=1624&amp;h=979" alt="جلب الحبيب بالشمع"></div>
+        <div class="srv-body">
+          <h3>جلب الحبيب بالشمع</h3>
+          <p>من أقوى وأسرع الأعمال الروحانية — نتائج خلال ساعات</p>
+          <span class="srv-more"><i class="fas fa-arrow-left"></i> التفاصيل</span>
+        </div>
+      </div>
+
+      <div class="srv-card" onclick="showPage('srv-nasib')">
+        <div class="srv-imgw"><img src="https://pfst.cf2.poecdn.net/base/image/cc1a3a2038c14c0f57f0a8417aec84c4bd721ad6b92b78f25f313170ed142412?w=1624&amp;h=979" alt="تيسير زواج العانس"></div>
+        <div class="srv-body">
+          <h3>تيسير زواج العانس وفتح النصيب</h3>
+          <p>فتح النصيب المغلق وتيسير أمور الزواج بإذن الله</p>
+          <span class="srv-more"><i class="fas fa-arrow-left"></i> التفاصيل</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <div class="orn"></div>
   <footer class="footer"><p>✦ الشيخة جواهر الشمري — جميع الحقوق محفوظة ✦</p></footer>
 </div>
