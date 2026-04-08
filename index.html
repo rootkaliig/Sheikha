@@ -7,7 +7,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --gold:#D4A835;--gold-l:#F0D060;--gold-d:#B8860B;--gold-s:#FFD700;
+  --gold:#D4A835;--gl:#F0D060;--gd:#B8860B;--gs:#FFD700;
   --bk:#080808;--bk2:#111;--bk3:#1a1a1a;
 }
 html{scroll-behavior:smooth}
@@ -22,295 +22,147 @@ h1,h2,h3,h4,h5,h6,p,span,a,li,div,label,strong,em,b{color:var(--gold);font-weigh
 .nav{
   position:sticky;top:0;z-index:200;
   background:rgba(8,8,8,0.97);backdrop-filter:blur(14px);
-  border-bottom:2px solid var(--gold-d);
-  padding:0 16px;display:flex;align-items:center;justify-content:space-between;height:58px;
+  border-bottom:2px solid var(--gd);
+  padding:0 16px;display:flex;align-items:center;justify-content:space-between;
+  height:56px;
 }
 .nav-brand{
-  font-family:'Aref Ruqaa',serif;font-size:clamp(1rem,3.5vw,1.4rem);
-  color:var(--gold-s);text-shadow:0 0 12px rgba(255,215,0,0.3);white-space:nowrap;
+  font-family:'Aref Ruqaa',serif;font-size:clamp(1rem,3.5vw,1.35rem);
+  color:var(--gs);text-shadow:0 0 12px rgba(255,215,0,0.3);
+  white-space:nowrap;cursor:pointer;
 }
-.nav-links{display:flex;gap:6px;align-items:center;flex-wrap:nowrap;}
+.nav-links{display:flex;gap:4px;align-items:center;flex-wrap:nowrap;}
 .nav-links a{
-  color:var(--gold);text-decoration:none;font-size:clamp(0.72rem,2.2vw,0.88rem);
-  padding:7px 10px;border-radius:8px;transition:all .3s;
-  border:1px solid transparent;white-space:nowrap;font-family:'Noto Naskh Arabic',serif;
+  color:var(--gold);text-decoration:none;font-size:clamp(0.7rem,2.1vw,0.86rem);
+  padding:6px 9px;border-radius:8px;transition:all .3s;
+  border:1px solid transparent;white-space:nowrap;cursor:pointer;
 }
 .nav-links a:hover,.nav-links a.active{
-  background:rgba(212,168,53,0.12);border-color:var(--gold-d);color:var(--gold-s);
+  background:rgba(212,168,53,0.12);border-color:var(--gd);color:var(--gs);
 }
+
+/* PAGES */
+.page{display:none;opacity:0;transition:opacity .4s;min-height:calc(100vh - 56px);}
+.page.active{display:block;opacity:1;}
 
 /* ORNAMENT */
-.orn{
-  width:100%;height:3px;
-  background:linear-gradient(90deg,transparent,var(--gold),var(--gold-s),var(--gold),transparent);
-  position:relative;
-}
-.orn::after{
-  content:'✦';position:absolute;left:50%;transform:translateX(-50%);
-  color:var(--gold-s);font-size:16px;top:-8px;text-shadow:0 0 10px var(--gold);
-}
+.orn{width:100%;height:3px;background:linear-gradient(90deg,transparent,var(--gold),var(--gs),var(--gold),transparent);position:relative;}
+.orn::after{content:'✦';position:absolute;left:50%;transform:translateX(-50%);color:var(--gs);font-size:15px;top:-7px;text-shadow:0 0 10px var(--gold);}
 
 /* HERO */
-.hero{
-  position:relative;width:100%;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  overflow:hidden;padding:40px 16px 30px;
-}
-.hero-bg{
-  position:absolute;inset:0;z-index:0;
-  background:radial-gradient(ellipse at 50% 30%,rgba(212,168,53,0.07) 0%,transparent 65%),var(--bk);
-}
-.hero-frame{
-  position:absolute;inset:10px;border:2px solid var(--gold-d);border-radius:6px;
-  pointer-events:none;z-index:1;
-}
-.hero-frame::before{
-  content:'';position:absolute;inset:5px;border:1px solid rgba(212,168,53,0.25);border-radius:3px;
-}
+.hero{position:relative;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:36px 16px 28px;}
+.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 50% 30%,rgba(212,168,53,0.07) 0%,transparent 65%),var(--bk);}
+.hero-frame{position:absolute;inset:10px;border:2px solid var(--gd);border-radius:6px;pointer-events:none;z-index:1;}
+.hero-frame::before{content:'';position:absolute;inset:5px;border:1px solid rgba(212,168,53,0.25);border-radius:3px;}
 .hero-inner{position:relative;z-index:2;text-align:center;animation:fadeUp 1s ease;}
-.hero-img{
-  width:min(92%,680px);border-radius:10px;border:3px solid var(--gold);
-  box-shadow:0 0 40px rgba(212,168,53,0.25),0 0 80px rgba(212,168,53,0.08);margin-bottom:20px;
-}
-.hero-title{
-  font-family:'Aref Ruqaa',serif;font-size:clamp(2rem,6.5vw,3.8rem);color:var(--gold-s);
-  text-shadow:0 0 20px rgba(255,215,0,0.35),0 3px 6px rgba(0,0,0,0.8);
-  margin-bottom:10px;letter-spacing:2px;
-}
-.hero-sub{
-  font-family:'Aref Ruqaa',serif;font-size:clamp(1rem,3vw,1.45rem);
-  color:var(--gold);opacity:.9;margin-bottom:8px;line-height:2;
-}
-.hero-div{width:180px;height:2px;margin:12px auto 18px;background:linear-gradient(90deg,transparent,var(--gold-s),transparent);}
-.hero-badge{
-  display:inline-block;background:linear-gradient(135deg,var(--gold-d),var(--gold-s));
-  color:var(--bk);font-weight:900;font-size:clamp(.85rem,2.5vw,1rem);
-  padding:8px 28px;border-radius:40px;margin-bottom:16px;
-  box-shadow:0 4px 20px rgba(212,168,53,0.35);letter-spacing:1px;
-}
-.hero-phone{
-  display:inline-flex;align-items:center;gap:10px;
-  background:linear-gradient(135deg,#25D366,#128C7E);
-  color:#fff!important;font-weight:900;font-size:clamp(1rem,3vw,1.25rem);
-  padding:14px 36px;border-radius:50px;text-decoration:none;direction:ltr;
-  box-shadow:0 4px 24px rgba(37,211,102,0.35);transition:all .3s;animation:pulse-g 2.2s infinite;
-}
+.hero-img{width:min(92%,650px);border-radius:10px;border:3px solid var(--gold);box-shadow:0 0 40px rgba(212,168,53,0.25);margin-bottom:18px;}
+.hero-title{font-family:'Aref Ruqaa',serif;font-size:clamp(1.9rem,6.5vw,3.5rem);color:var(--gs);text-shadow:0 0 20px rgba(255,215,0,0.35),0 3px 6px rgba(0,0,0,0.8);margin-bottom:8px;letter-spacing:2px;}
+.hero-sub{font-family:'Aref Ruqaa',serif;font-size:clamp(1rem,3vw,1.4rem);color:var(--gold);opacity:.9;margin-bottom:6px;line-height:2;}
+.hero-div{width:160px;height:2px;margin:10px auto 16px;background:linear-gradient(90deg,transparent,var(--gs),transparent);}
+.hero-badge{display:inline-block;background:linear-gradient(135deg,var(--gd),var(--gs));color:var(--bk);font-weight:900;font-size:clamp(.82rem,2.5vw,1rem);padding:8px 26px;border-radius:40px;margin-bottom:14px;box-shadow:0 4px 20px rgba(212,168,53,0.35);letter-spacing:1px;}
+.hero-phone{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff!important;font-weight:900;font-size:clamp(1rem,3vw,1.2rem);padding:13px 34px;border-radius:50px;text-decoration:none;direction:ltr;box-shadow:0 4px 24px rgba(37,211,102,0.35);transition:all .3s;animation:pulse-g 2.2s infinite;}
 .hero-phone:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(37,211,102,0.5);}
-@keyframes pulse-g{
-  0%,100%{box-shadow:0 4px 24px rgba(37,211,102,0.35)}
-  50%{box-shadow:0 4px 35px rgba(37,211,102,0.6)}
-}
+@keyframes pulse-g{0%,100%{box-shadow:0 4px 24px rgba(37,211,102,0.35)}50%{box-shadow:0 4px 35px rgba(37,211,102,0.6)}}
 
 /* SHIMMER */
-.shimmer{
-  background:linear-gradient(90deg,var(--gold-d),var(--gold-s),var(--gold-l),var(--gold-s),var(--gold-d));
-  background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;animation:shim 3.5s linear infinite;
-}
+.shimmer{background:linear-gradient(90deg,var(--gd),var(--gs),var(--gl),var(--gs),var(--gd));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shim 3.5s linear infinite;}
 @keyframes shim{0%{background-position:-200% center}100%{background-position:200% center}}
 
-/* SECTION TITLES */
-.stitle{text-align:center;padding:50px 16px 24px;}
-.stitle h2{
-  font-family:'Aref Ruqaa',serif;font-size:clamp(1.7rem,5vw,2.7rem);
-  color:var(--gold-s);text-shadow:0 0 12px rgba(255,215,0,0.25);
-  display:inline-block;position:relative;
-}
-.stitle h2::before,.stitle h2::after{
-  content:'❖';position:absolute;top:50%;transform:translateY(-50%);
-  color:var(--gold);font-size:.55em;opacity:.65;
-}
+/* SECTION TITLE */
+.stitle{text-align:center;padding:40px 16px 20px;}
+.stitle h2{font-family:'Aref Ruqaa',serif;font-size:clamp(1.6rem,5vw,2.6rem);color:var(--gs);text-shadow:0 0 12px rgba(255,215,0,0.25);display:inline-block;position:relative;}
+.stitle h2::before,.stitle h2::after{content:'❖';position:absolute;top:50%;transform:translateY(-50%);color:var(--gold);font-size:.55em;opacity:.65;}
 .stitle h2::before{right:calc(100% + 12px);}
 .stitle h2::after{left:calc(100% + 12px);}
-.stitle-line{width:100px;height:3px;margin:14px auto 0;border-radius:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.stitle-line{width:100px;height:3px;margin:12px auto 0;border-radius:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
 
-/* FEATURED CARD */
-.feat{padding:10px 16px 40px;}
-.feat-card{
-  max-width:880px;margin:0 auto;background:linear-gradient(150deg,var(--bk2),#0a0a0a);
-  border:2px solid var(--gold);border-radius:16px;overflow:hidden;
-  box-shadow:0 0 50px rgba(212,168,53,0.18),0 20px 60px rgba(0,0,0,0.5);
-}
-.feat-card img{width:100%;display:block;border-bottom:2px solid var(--gold-d);}
-.feat-body{padding:28px 20px;text-align:center;}
-.feat-badge{
-  display:inline-block;background:linear-gradient(135deg,var(--gold-d),var(--gold-s));
-  color:var(--bk);font-weight:900;font-size:.82rem;
-  padding:6px 22px;border-radius:30px;margin-bottom:14px;letter-spacing:1px;
-}
-.feat-body h2{
-  font-family:'Aref Ruqaa',serif;font-size:clamp(1.4rem,4vw,2.1rem);
-  color:var(--gold-s);margin-bottom:14px;text-shadow:0 0 10px rgba(255,215,0,0.18);
-}
-.feat-body p{font-size:clamp(.92rem,2.5vw,1.08rem);color:var(--gold);line-height:2.1;max-width:680px;margin:0 auto 18px;}
-.feat-cta{
-  display:inline-flex;align-items:center;gap:8px;
-  background:linear-gradient(135deg,#25D366,#128C7E);
-  color:#fff!important;font-weight:900;font-size:1.05rem;
-  padding:14px 36px;border-radius:50px;text-decoration:none;
-  box-shadow:0 4px 20px rgba(37,211,102,0.3);transition:all .3s;
-}
+/* FEATURED */
+.feat{padding:10px 16px 36px;}
+.feat-card{max-width:860px;margin:0 auto;background:linear-gradient(150deg,var(--bk2),#0a0a0a);border:2px solid var(--gold);border-radius:16px;overflow:hidden;box-shadow:0 0 50px rgba(212,168,53,0.18),0 20px 60px rgba(0,0,0,0.5);animation:fadeUp .8s ease;}
+.feat-card img{width:100%;display:block;border-bottom:2px solid var(--gd);}
+.feat-body{padding:26px 18px;text-align:center;}
+.feat-badge{display:inline-block;background:linear-gradient(135deg,var(--gd),var(--gs));color:var(--bk);font-weight:900;font-size:.8rem;padding:6px 20px;border-radius:30px;margin-bottom:12px;letter-spacing:1px;}
+.feat-body h2{font-family:'Aref Ruqaa',serif;font-size:clamp(1.3rem,4vw,2rem);color:var(--gs);margin-bottom:12px;text-shadow:0 0 10px rgba(255,215,0,0.18);}
+.feat-body p{font-size:clamp(.9rem,2.5vw,1.06rem);color:var(--gold);line-height:2.1;max-width:660px;margin:0 auto 16px;}
+.feat-cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff!important;font-weight:900;font-size:1.02rem;padding:13px 34px;border-radius:50px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.3);transition:all .3s;}
 .feat-cta:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(37,211,102,0.5);}
 
 /* GUARANTEE */
-.guarantee{max-width:880px;margin:0 auto 30px;padding:0 16px;}
-.guarantee-box{
-  background:linear-gradient(135deg,rgba(212,168,53,0.08),rgba(212,168,53,0.03));
-  border:2px solid var(--gold);border-radius:14px;padding:24px 20px;
-  text-align:center;position:relative;overflow:hidden;
-}
-.guarantee-box::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at 50% 0%,rgba(255,215,0,0.06),transparent 60%);pointer-events:none;
-}
-.guarantee-icon{font-size:2.5rem;margin-bottom:10px;display:block;}
-.guarantee-box h3{
-  font-family:'Aref Ruqaa',serif;font-size:clamp(1.3rem,4vw,1.8rem);
-  color:var(--gold-s);margin-bottom:10px;
-}
-.guarantee-box p{font-size:clamp(.9rem,2.5vw,1.05rem);line-height:2;color:var(--gold);max-width:600px;margin:0 auto;}
-
-/* FEATURES GRID */
-.features{
-  max-width:700px;margin:0 auto 30px;padding:0 16px;
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:14px;
-}
-.feat-item{
-  background:rgba(212,168,53,0.05);border:1px solid rgba(212,168,53,0.25);
-  border-radius:12px;padding:16px 14px;text-align:center;transition:border-color .3s;
-}
-.feat-item:hover{border-color:var(--gold);}
-.feat-item i{font-size:1.6rem;color:var(--gold-s);margin-bottom:8px;display:block;}
-.feat-item span{font-size:.88rem;color:var(--gold);line-height:1.7;}
+.guarantee{max-width:860px;margin:0 auto 28px;padding:0 16px;}
+.guarantee-box{background:linear-gradient(135deg,rgba(212,168,53,0.08),rgba(212,168,53,0.03));border:2px solid var(--gold);border-radius:14px;padding:22px 18px;text-align:center;position:relative;overflow:hidden;}
+.guarantee-box::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(255,215,0,0.06),transparent 60%);pointer-events:none;}
+.guarantee-icon{font-size:2.4rem;margin-bottom:8px;display:block;}
+.guarantee-box h3{font-family:'Aref Ruqaa',serif;font-size:clamp(1.2rem,4vw,1.7rem);color:var(--gs);margin-bottom:8px;}
+.guarantee-box p{font-size:clamp(.88rem,2.5vw,1.02rem);line-height:2;color:var(--gold);max-width:580px;margin:0 auto;}
 
 /* SERVICES GRID */
-.srv-sec{padding:10px 16px 50px;}
-.srv-grid{
-  max-width:1100px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:24px;
-}
-.srv-card{
-  background:linear-gradient(160deg,var(--bk2),#070707);
-  border:1.5px solid rgba(212,168,53,0.35);border-radius:14px;
-  overflow:hidden;transition:all .4s;position:relative;
-  opacity:0;transform:translateY(30px);
-}
+.srv-sec{padding:10px 16px 44px;}
+.srv-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:22px;}
+.srv-card{background:linear-gradient(160deg,var(--bk2),#070707);border:1.5px solid rgba(212,168,53,0.35);border-radius:14px;overflow:hidden;transition:all .4s;position:relative;opacity:0;transform:translateY(30px);cursor:pointer;}
 .srv-card.vis{opacity:1;transform:translateY(0);}
 .srv-card:hover{border-color:var(--gold);transform:translateY(-5px);box-shadow:0 10px 40px rgba(212,168,53,0.14);}
 .srv-imgw{overflow:hidden;position:relative;}
-.srv-imgw::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:35px;
-  background:linear-gradient(to top,var(--bk2),transparent);pointer-events:none;
-}
-.srv-card img{
-  width:100%;aspect-ratio:16/9.5;object-fit:cover;display:block;
-  border-bottom:2px solid var(--gold-d);transition:transform .5s;
-}
+.srv-imgw::after{content:'';position:absolute;bottom:0;left:0;right:0;height:35px;background:linear-gradient(to top,var(--bk2),transparent);pointer-events:none;}
+.srv-card img{width:100%;aspect-ratio:16/9.5;object-fit:cover;display:block;border-bottom:2px solid var(--gd);transition:transform .5s;}
 .srv-card:hover img{transform:scale(1.04);}
-.srv-body{padding:18px 16px 20px;text-align:center;position:relative;z-index:1;}
-.srv-body h3{
-  font-family:'Aref Ruqaa',serif;font-size:clamp(1.15rem,3vw,1.4rem);
-  color:var(--gold-s);margin-bottom:10px;
-}
-.srv-body p{font-size:.92rem;color:var(--gold);line-height:2;opacity:.9;margin-bottom:12px;}
-.srv-link{
-  display:inline-flex;align-items:center;gap:6px;
-  color:var(--gold-s)!important;font-size:.92rem;text-decoration:none;
-  background:rgba(37,211,102,0.12);padding:8px 20px;border-radius:30px;
-  border:1px solid rgba(37,211,102,0.3);transition:all .3s;
-}
-.srv-link:hover{background:rgba(37,211,102,0.2);border-color:#25D366;}
-.srv-link i{color:#25D366!important;}
+.srv-body{padding:16px 14px 18px;text-align:center;position:relative;z-index:1;}
+.srv-body h3{font-family:'Aref Ruqaa',serif;font-size:clamp(1.1rem,3vw,1.35rem);color:var(--gs);margin-bottom:8px;}
+.srv-body p{font-size:.9rem;color:var(--gold);line-height:1.9;opacity:.9;margin-bottom:10px;}
+.srv-more{display:inline-flex;align-items:center;gap:6px;color:var(--gs)!important;font-size:.9rem;text-decoration:none;background:rgba(212,168,53,0.1);padding:8px 20px;border-radius:30px;border:1px solid rgba(212,168,53,0.3);transition:all .3s;cursor:pointer;}
+.srv-more:hover{background:rgba(212,168,53,0.2);border-color:var(--gold);}
 
-/* ABOUT */
-.about-sec{max-width:800px;margin:0 auto;padding:10px 20px 30px;}
-.about-img{
-  width:min(90%,500px);border-radius:12px;border:2px solid var(--gold);
-  box-shadow:0 0 30px rgba(212,168,53,0.2);display:block;margin:0 auto 24px;
-}
-.about-box{
-  background:linear-gradient(150deg,var(--bk2),#090909);
-  border:1.5px solid rgba(212,168,53,0.35);border-radius:14px;padding:28px 20px;line-height:2.2;
-}
-.about-box h3{
-  font-family:'Aref Ruqaa',serif;font-size:clamp(1.3rem,4vw,1.8rem);
-  color:var(--gold-s);text-align:center;margin-bottom:16px;
-}
-.about-box p{
-  font-size:clamp(.92rem,2.5vw,1.05rem);color:var(--gold);text-align:center;margin-bottom:20px;
-}
+/* SERVICE DETAIL PAGE */
+.sdetail{max-width:860px;margin:0 auto;padding:10px 16px 50px;}
+.sdetail-img{width:100%;border-radius:14px;border:2px solid var(--gold);box-shadow:0 0 30px rgba(212,168,53,0.2);margin-bottom:24px;}
+.sdetail-box{background:linear-gradient(150deg,var(--bk2),#090909);border:1.5px solid rgba(212,168,53,0.35);border-radius:14px;padding:28px 20px;margin-bottom:24px;}
+.sdetail-box h2{font-family:'Aref Ruqaa',serif;font-size:clamp(1.4rem,4.5vw,2.2rem);color:var(--gs);text-align:center;margin-bottom:16px;text-shadow:0 0 10px rgba(255,215,0,0.15);}
+.sdetail-box p{font-size:clamp(.92rem,2.5vw,1.06rem);color:var(--gold);line-height:2.2;text-align:center;margin-bottom:14px;}
+.sdetail-box ul{list-style:none;padding:0;margin:16px auto;max-width:600px;}
+.sdetail-box ul li{padding:10px 0;border-bottom:1px solid rgba(212,168,53,0.15);font-size:clamp(.9rem,2.5vw,1rem);color:var(--gold);line-height:1.9;text-align:right;}
+.sdetail-box ul li i{color:var(--gs);margin-left:8px;}
+.sdetail-cta{text-align:center;margin:20px 0;}
+.sdetail-cta a{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff!important;font-weight:900;font-size:clamp(1rem,3vw,1.15rem);padding:15px 40px;border-radius:50px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.3);transition:all .3s;}
+.sdetail-cta a:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(37,211,102,0.5);}
+.back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--gs)!important;font-size:.92rem;text-decoration:none;cursor:pointer;padding:10px 0;margin-bottom:10px;transition:opacity .3s;}
+.back-btn:hover{opacity:.7;}
+.back-btn i{font-size:.8rem;}
+
+/* FEATURES */
+.features{max-width:700px;margin:0 auto 28px;padding:0 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,195px),1fr));gap:12px;}
+.feat-item{background:rgba(212,168,53,0.05);border:1px solid rgba(212,168,53,0.25);border-radius:12px;padding:14px 12px;text-align:center;transition:border-color .3s;}
+.feat-item:hover{border-color:var(--gold);}
+.feat-item i{font-size:1.5rem;color:var(--gs);margin-bottom:6px;display:block;}
+.feat-item span{font-size:.86rem;color:var(--gold);line-height:1.7;}
 
 /* TESTIMONIALS */
-.testi-grid{
-  max-width:900px;margin:0 auto;padding:0 16px 50px;
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:20px;
-}
-.testi-card{
-  background:linear-gradient(150deg,var(--bk2),#090909);
-  border:1.5px solid rgba(212,168,53,0.3);border-radius:14px;
-  padding:22px 18px;text-align:center;transition:border-color .3s;
-}
+.testi-grid{max-width:900px;margin:0 auto;padding:0 16px 44px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:18px;}
+.testi-card{background:linear-gradient(150deg,var(--bk2),#090909);border:1.5px solid rgba(212,168,53,0.3);border-radius:14px;padding:20px 16px;text-align:center;transition:border-color .3s;}
 .testi-card:hover{border-color:var(--gold);}
-.testi-stars{color:var(--gold-s);font-size:1.1rem;margin-bottom:10px;letter-spacing:3px;}
-.testi-card p{font-size:.92rem;line-height:2;color:var(--gold);margin-bottom:12px;}
-.testi-name{font-family:'Aref Ruqaa',serif;font-size:1rem;color:var(--gold-s);opacity:.8;}
+.testi-stars{color:var(--gs);font-size:1rem;margin-bottom:8px;letter-spacing:3px;}
+.testi-card p{font-size:.9rem;line-height:2;color:var(--gold);margin-bottom:10px;}
+.testi-name{font-family:'Aref Ruqaa',serif;font-size:.95rem;color:var(--gs);opacity:.8;}
 
 /* CONTACT */
-.contact{padding:30px 16px 40px;text-align:center;}
-.contact-box{
-  max-width:580px;margin:0 auto;background:linear-gradient(150deg,var(--bk2),#0a0a0a);
-  border:2px solid var(--gold);border-radius:16px;padding:32px 20px;
-  box-shadow:0 0 40px rgba(212,168,53,0.14);
-}
-.contact-icon{font-size:2.8rem;color:var(--gold-s);margin-bottom:14px;text-shadow:0 0 20px rgba(255,215,0,0.35);}
-.contact-box h2{
-  font-family:'Aref Ruqaa',serif;font-size:clamp(1.4rem,4vw,1.9rem);
-  color:var(--gold-s);margin-bottom:10px;
-}
-.contact-box>p{font-size:clamp(.9rem,2.5vw,1.05rem);line-height:2;color:var(--gold);margin-bottom:18px;}
-.contact-num{
-  direction:ltr;display:inline-block;font-size:clamp(1.2rem,3.5vw,1.6rem);
-  color:var(--gold-s);margin-bottom:20px;letter-spacing:2px;
-}
+.contact{padding:28px 16px 70px;text-align:center;}
+.contact-box{max-width:560px;margin:0 auto;background:linear-gradient(150deg,var(--bk2),#0a0a0a);border:2px solid var(--gold);border-radius:16px;padding:30px 18px;box-shadow:0 0 40px rgba(212,168,53,0.14);}
+.contact-icon{font-size:2.6rem;color:var(--gs);margin-bottom:12px;text-shadow:0 0 20px rgba(255,215,0,0.35);}
+.contact-box h2{font-family:'Aref Ruqaa',serif;font-size:clamp(1.3rem,4vw,1.8rem);color:var(--gs);margin-bottom:8px;}
+.contact-box>p{font-size:clamp(.88rem,2.5vw,1.02rem);line-height:2;color:var(--gold);margin-bottom:16px;}
+.contact-num{direction:ltr;display:inline-block;font-size:clamp(1.1rem,3.5vw,1.5rem);color:var(--gs);margin-bottom:18px;letter-spacing:2px;}
 .contact-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
-.btn-wa{
-  display:inline-flex;align-items:center;gap:8px;
-  background:linear-gradient(135deg,#25D366,#128C7E);
-  color:#fff!important;font-weight:900;font-size:1.05rem;
-  padding:14px 30px;border-radius:50px;text-decoration:none;
-  box-shadow:0 4px 20px rgba(37,211,102,0.3);transition:all .3s;
-}
+.btn-wa{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff!important;font-weight:900;font-size:1rem;padding:13px 28px;border-radius:50px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.3);transition:all .3s;}
 .btn-wa:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(37,211,102,0.5);}
-.btn-call{
-  display:inline-flex;align-items:center;gap:8px;
-  background:linear-gradient(135deg,var(--gold-d),var(--gold));
-  color:var(--bk)!important;font-weight:900;font-size:1.05rem;
-  padding:14px 30px;border-radius:50px;text-decoration:none;
-  box-shadow:0 4px 20px rgba(212,168,53,0.3);transition:all .3s;
-}
+.btn-call{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--gd),var(--gold));color:var(--bk)!important;font-weight:900;font-size:1rem;padding:13px 28px;border-radius:50px;text-decoration:none;box-shadow:0 4px 20px rgba(212,168,53,0.3);transition:all .3s;}
 .btn-call:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(212,168,53,0.5);}
 
 /* FOOTER */
-.footer{
-  text-align:center;padding:20px 16px;border-top:2px solid var(--gold-d);
-  background:linear-gradient(to top,rgba(212,168,53,0.02),transparent);
-}
-.footer p{font-family:'Amiri',serif;font-size:.9rem;color:var(--gold);opacity:.6;}
+.footer{text-align:center;padding:18px 16px;border-top:2px solid var(--gd);background:linear-gradient(to top,rgba(212,168,53,0.02),transparent);}
+.footer p{font-family:'Amiri',serif;font-size:.88rem;color:var(--gold);opacity:.6;}
 
-/* FLOATING WA */
-.wa-float{
-  position:fixed;bottom:22px;left:22px;z-index:999;width:60px;height:60px;
-  background:linear-gradient(135deg,#25D366,#128C7E);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  color:#fff!important;font-size:28px;text-decoration:none;
-  box-shadow:0 4px 20px rgba(37,211,102,0.4);animation:wa-p 2s infinite;transition:transform .3s;
-}
+/* WA FLOAT */
+.wa-float{position:fixed;bottom:20px;left:20px;z-index:999;width:58px;height:58px;background:linear-gradient(135deg,#25D366,#128C7E);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff!important;font-size:27px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.4);animation:wa-p 2s infinite;transition:transform .3s;}
 .wa-float:hover{transform:scale(1.12);}
-@keyframes wa-p{
-  0%{box-shadow:0 4px 20px rgba(37,211,102,0.4),0 0 0 0 rgba(37,211,102,0.4)}
-  70%{box-shadow:0 4px 20px rgba(37,211,102,0.4),0 0 0 18px rgba(37,211,102,0)}
-  100%{box-shadow:0 4px 20px rgba(37,211,102,0.4),0 0 0 0 rgba(37,211,102,0)}
-}
+@keyframes wa-p{0%{box-shadow:0 4px 20px rgba(37,211,102,0.4),0 0 0 0 rgba(37,211,102,0.4)}70%{box-shadow:0 4px 20px rgba(37,211,102,0.4),0 0 0 18px rgba(37,211,102,0)}100%{box-shadow:0 4px 20px rgba(37,211,102,0.4),0 0 0 0 rgba(37,211,102,0)}}
 
 /* STARS */
 .stars{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;}
@@ -321,18 +173,113 @@ h1,h2,h3,h4,h5,h6,p,span,a,li,div,label,strong,em,b{color:var(--gold);font-weigh
 /* SCROLLBAR */
 ::-webkit-scrollbar{width:7px}
 ::-webkit-scrollbar-track{background:var(--bk)}
-::-webkit-scrollbar-thumb{background:linear-gradient(var(--gold-d),var(--gold));border-radius:4px;}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--gd),var(--gold));border-radius:4px;}
 
-/* SCROLL OFFSET for sticky nav */
-section[id]{scroll-margin-top:65px;}
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;z-index:201;-webkit-tap-highlight-color:transparent;}
+.hamburger span{display:block;width:24px;height:2.5px;background:var(--gold);border-radius:2px;transition:all .35s;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px);}
 
+/* TABLET */
+@media(max-width:768px){
+  .hero-frame{inset:6px;}
+  .hero-frame::before{inset:3px;}
+  .stitle{padding:30px 14px 16px;}
+  .stitle h2{font-size:clamp(1.3rem,4.5vw,2rem);}
+  .features{grid-template-columns:repeat(3,1fr);gap:10px;padding:0 14px;}
+  .testi-grid{grid-template-columns:1fr 1fr;gap:14px;padding:0 14px 36px;}
+  .guarantee{padding:0 14px;}
+  .sdetail-box ul li{font-size:clamp(.88rem,2.5vw,.98rem);}
+}
+
+/* MOBILE */
 @media(max-width:600px){
-  .hero{padding:25px 10px 20px;}
-  .nav{height:50px;padding:0 10px;}
-  .wa-float{width:52px;height:52px;font-size:24px;bottom:16px;left:16px;}
-  .feat-body,.srv-body{padding:16px 12px;}
-  .contact-box{padding:24px 14px;}
-  section[id]{scroll-margin-top:56px;}
+  .hamburger{display:flex;}
+  .nav{height:52px;padding:0 12px;}
+  .nav-links{
+    position:fixed;top:52px;right:-100%;width:70%;max-width:280px;
+    height:calc(100vh - 52px);background:rgba(8,8,8,0.98);
+    backdrop-filter:blur(18px);flex-direction:column;align-items:stretch;
+    gap:0;padding:16px 0;transition:right .35s ease;z-index:200;
+    border-left:2px solid var(--gd);overflow-y:auto;
+    box-shadow:-6px 0 30px rgba(0,0,0,0.6);
+  }
+  .nav-links.open{right:0;}
+  .nav-links a{
+    font-size:1rem;padding:14px 24px;border-radius:0;
+    border-bottom:1px solid rgba(212,168,53,0.12);text-align:right;
+  }
+  .nav-links a:hover,.nav-links a.active{
+    background:rgba(212,168,53,0.1);border-color:rgba(212,168,53,0.12);
+  }
+  .nav-overlay{
+    display:none;position:fixed;inset:0;top:52px;background:rgba(0,0,0,0.55);
+    z-index:199;-webkit-tap-highlight-color:transparent;
+  }
+  .nav-overlay.show{display:block;}
+
+  .hero{padding:20px 10px 18px;}
+  .hero-img{width:96%;border-radius:8px;border-width:2px;}
+  .hero-title{letter-spacing:1px;}
+  .hero-badge{font-size:clamp(.76rem,2.4vw,.92rem);padding:7px 18px;}
+  .hero-phone{font-size:clamp(.92rem,2.8vw,1.1rem);padding:12px 26px;}
+
+  .feat{padding:10px 10px 28px;}
+  .feat-body{padding:18px 12px;}
+  .feat-body h2{font-size:clamp(1.1rem,3.5vw,1.5rem);}
+  .feat-body p{font-size:clamp(.86rem,2.5vw,1rem);}
+  .feat-cta{font-size:.92rem;padding:12px 24px;}
+
+  .features{grid-template-columns:repeat(2,1fr);gap:8px;padding:0 10px;margin-bottom:20px;}
+  .feat-item{padding:12px 8px;}
+  .feat-item i{font-size:1.3rem;}
+  .feat-item span{font-size:.82rem;}
+
+  .srv-sec{padding:10px 10px 36px;}
+  .srv-grid{gap:16px;}
+  .srv-body{padding:14px 10px 16px;}
+  .srv-body h3{font-size:clamp(1rem,3vw,1.2rem);}
+  .srv-more{padding:10px 18px;font-size:.88rem;min-height:44px;display:inline-flex;align-items:center;}
+
+  .sdetail{padding:10px 10px 40px;}
+  .sdetail-img{border-radius:10px;border-width:2px;margin-bottom:18px;}
+  .sdetail-box{padding:20px 12px;border-radius:12px;}
+  .sdetail-box h2{font-size:clamp(1.2rem,4vw,1.7rem);}
+  .sdetail-box p{font-size:clamp(.88rem,2.5vw,1rem);}
+  .sdetail-box ul{margin:12px auto;}
+  .sdetail-box ul li{padding:9px 0;font-size:clamp(.86rem,2.4vw,.95rem);}
+  .sdetail-cta a{font-size:clamp(.92rem,2.8vw,1.06rem);padding:14px 28px;min-height:48px;}
+  .back-btn{font-size:.9rem;padding:12px 0;min-height:44px;display:inline-flex;align-items:center;}
+
+  .testi-grid{grid-template-columns:1fr;gap:14px;padding:0 10px 36px;}
+  .testi-card{padding:18px 14px;}
+
+  .contact-box{padding:22px 12px;}
+  .contact-num{font-size:clamp(1rem,3.2vw,1.3rem);}
+  .contact-btns{flex-direction:column;gap:10px;align-items:center;}
+  .btn-wa,.btn-call{width:100%;max-width:280px;justify-content:center;min-height:48px;font-size:.95rem;}
+
+  .guarantee-box{padding:18px 12px;border-radius:12px;}
+  .guarantee-box h3{font-size:clamp(1rem,3.5vw,1.3rem);}
+  .guarantee-box p{font-size:clamp(.84rem,2.4vw,.95rem);}
+
+  .wa-float{width:52px;height:52px;font-size:24px;bottom:14px;left:14px;}
+  .footer{padding:14px 10px;}
+  .footer p{font-size:.82rem;}
+}
+
+/* SMALL MOBILE */
+@media(max-width:380px){
+  .nav-brand{font-size:clamp(.85rem,3.2vw,1rem);}
+  .hero-badge{padding:6px 14px;font-size:.74rem;}
+  .hero-phone{padding:11px 20px;font-size:.88rem;}
+  .features{grid-template-columns:1fr 1fr;gap:6px;padding:0 8px;}
+  .feat-item span{font-size:.78rem;}
+  .sdetail-box{padding:16px 10px;}
+  .contact-box{padding:18px 10px;}
+  .nav-links{width:78%;max-width:260px;}
 }
 </style>
 </head>
@@ -341,21 +288,22 @@ section[id]{scroll-margin-top:65px;}
 <div class="stars" id="starsBg"></div>
 
 <!-- NAV -->
-<nav class="nav" id="mainNav">
-  <div class="nav-brand">✦ الشيخة جواهر ✦</div>
-  <div class="nav-links">
-    <a href="#home" class="active">الرئيسية</a>
-    <a href="#money">تنزيل الأموال</a>
-    <a href="#services">الخدمات</a>
-    <a href="#about">من نحن</a>
-    <a href="#contact">تواصل</a>
+<nav class="nav">
+  <div class="nav-brand" onclick="showPage('home')">✦ الشيخة جواهر ✦</div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  <div class="nav-links" id="navLinks">
+    <a data-page="home" class="active">الرئيسية</a>
+    <a data-page="services">الخدمات</a>
+    <a data-page="about">من نحن</a>
+    <a data-page="contact">تواصل</a>
   </div>
+  <div class="nav-overlay" id="navOverlay" onclick="toggleMenu()"></div>
 </nav>
 
-<!-- ===== HERO ===== -->
-<section id="home">
+<!-- ===== PAGE: HOME ===== -->
+<div class="page active" id="page-home">
   <div class="orn"></div>
-  <div class="hero">
+  <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-frame"></div>
     <div class="hero-inner">
@@ -363,256 +311,439 @@ section[id]{scroll-margin-top:65px;}
       <h1 class="hero-title shimmer">الشيخة جواهر الشمري</h1>
       <p class="hero-sub">خبيرة روحانية معتمدة — علاج روحاني شامل بإذن الله</p>
       <div class="hero-div"></div>
-      <div class="hero-badge">💰 الدفع بعد النتيجة — ثقة وضمان 💰</div>
+      <div class="hero-badge">✦ خبرة سنوات في العلاج الروحاني ✦</div>
       <br><br>
-      <a class="hero-phone" href="https://wa.me/966543252804" target="_blank" rel="noopener">
-        <i class="fab fa-whatsapp"></i> +966 543 252 804
-      </a>
+      <a class="hero-phone" href="https://wa.me/966543252804" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> +966 543 252 804</a>
     </div>
-  </div>
+  </section>
 
-  <!-- QUICK FEATURES -->
-  <div class="features" style="margin-top:10px;">
+  <div class="stitle"><h2 class="shimmer">✦ تنزيل الأموال وفتح الرزق ✦</h2><div class="stitle-line"></div></div>
+  <section class="feat">
+    <div class="feat-card" style="cursor:pointer" onclick="showPage('srv-money')">
+      <img src="https://pfst.cf2.poecdn.net/base/image/07bf03e1326646360d5ca4c799162efe1508dc13c15abb5689414cfc4248e188?w=1624&amp;h=979" alt="تنزيل الأموال">
+      <div class="feat-body">
+        <span class="feat-badge">⭐ الخدمة الأكثر طلباً</span>
+        <h2>تنزيل الأموال — النتائج مضمونة بإذن الله</h2>
+        <p>هل تعاني من ضيق الرزق وتراكم الديون؟ الشيخة جواهر تقدّم لك علاجاً روحانياً فعّالاً ومجرّباً لتنزيل الأموال وفتح أبواب الرزق الواسعة بإذن الله تعالى.</p>
+        <span class="srv-more"><i class="fas fa-arrow-left"></i> اقرأ التفاصيل الكاملة</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="features">
     <div class="feat-item"><i class="fas fa-hand-holding-usd"></i><span>تنزيل الأموال وفتح الرزق</span></div>
     <div class="feat-item"><i class="fas fa-heart"></i><span>جلب الحبيب خلال أيام</span></div>
     <div class="feat-item"><i class="fas fa-shield-alt"></i><span>إبطال السحر والعين</span></div>
     <div class="feat-item"><i class="fas fa-ring"></i><span>تيسير الزواج وفتح النصيب</span></div>
     <div class="feat-item"><i class="fas fa-users"></i><span>الإصلاح بين الأزواج</span></div>
-    <div class="feat-item"><i class="fas fa-check-double"></i><span>الدفع بعد النتيجة</span></div>
+    <div class="feat-item"><i class="fas fa-star"></i><span>نتائج مضمونة بإذن الله</span></div>
   </div>
-</section>
+  <div class="orn"></div>
+  <footer class="footer"><p>✦ الشيخة جواهر الشمري — جميع الحقوق محفوظة ✦</p></footer>
+</div>
 
-<div class="orn"></div>
-
-<!-- ===== MONEY SECTION ===== -->
-<section id="money">
-  <div class="stitle"><h2 class="shimmer">✦ تنزيل الأموال وفتح الرزق ✦</h2><div class="stitle-line"></div></div>
-  <div class="feat">
-    <div class="feat-card">
-      <img src="https://pfst.cf2.poecdn.net/base/image/07bf03e1326646360d5ca4c799162efe1508dc13c15abb5689414cfc4248e188?w=1624&amp;h=979" alt="تنزيل الأموال">
-      <div class="feat-body">
-        <span class="feat-badge">⭐ الخدمة الأكثر طلباً</span>
-        <h2>تنزيل الأموال — النتائج مضمونة بإذن الله</h2>
-        <p>هل تعاني من ضيق الرزق وتراكم الديون؟ هل أُغلقت أبواب المال في وجهك؟ الشيخة جواهر الشمري تقدّم لك علاجاً روحانياً فعّالاً ومُجرّباً لتنزيل الأموال وفتح أبواب الرزق المغلقة. بفضل الله تعالى، تحقّقت نتائج مذهلة لمئات الحالات. لا تدفع شيئاً حتى ترى النتيجة بنفسك!</p>
-        <a class="feat-cta" href="https://wa.me/966543252804?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AA%D9%86%D8%B2%D9%8A%D9%84%20%D8%A7%D9%84%D8%A3%D9%85%D9%88%D8%A7%D9%84" target="_blank" rel="noopener">
-          <i class="fab fa-whatsapp"></i> تواصل الآن — الدفع بعد النتيجة
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="guarantee">
-    <div class="guarantee-box">
-      <span class="guarantee-icon">🛡️</span>
-      <h3 class="shimmer">الدفع بعد النتيجة — ضمان كامل</h3>
-      <p>نحن واثقون من أعمالنا الروحانية لذلك لا نطلب منك أي مبلغ مقدّماً. ادفع فقط بعد أن تتحقّق النتيجة وتراها بعينك. هذا دليل على صدقنا وثقتنا فيما نقدّمه بإذن الله تعالى.</p>
-    </div>
-  </div>
-</section>
-
-<div class="orn"></div>
-
-<!-- ===== ALL SERVICES ===== -->
-<section id="services">
+<!-- ===== PAGE: SERVICES LIST ===== -->
+<div class="page" id="page-services">
+  <div class="orn"></div>
   <div class="stitle"><h2 class="shimmer">خدمات الشيخة جواهر</h2><div class="stitle-line"></div></div>
-
-  <div class="srv-sec">
+  <section class="srv-sec">
     <div class="srv-grid">
 
-      <div class="srv-card">
+      <div class="srv-card" onclick="showPage('srv-money')">
         <div class="srv-imgw"><img src="https://pfst.cf2.poecdn.net/base/image/07bf03e1326646360d5ca4c799162efe1508dc13c15abb5689414cfc4248e188?w=1624&amp;h=979" alt="تنزيل الأموال"></div>
         <div class="srv-body">
           <h3>تنزيل الأموال وجلب الرزق</h3>
-          <p>هل سئمت من الفقر وضيق الحال؟ بأعمال روحانية مجرّبة، نفتح لك أبواب الرزق الواسعة ونجلب لك المال من حيث لا تحتسب. مئات الحالات الناجحة تشهد على ذلك. لا تدفع حتى ترى النتيجة!</p>
-          <a class="srv-link" href="https://wa.me/966543252804?text=%D8%AA%D9%86%D8%B2%D9%8A%D9%84%20%D8%A7%D9%84%D8%A3%D9%85%D9%88%D8%A7%D9%84" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> تواصل الآن</a>
+          <p>فتح أبواب الرزق وتنزيل الأموال بأعمال روحانية مجرّبة ومضمونة</p>
+          <span class="srv-more"><i class="fas fa-arrow-left"></i> التفاصيل</span>
         </div>
       </div>
 
-      <div class="srv-card">
+      <div class="srv-card" onclick="showPage('srv-jalb')">
         <div class="srv-imgw"><img src="https://pfst.cf2.poecdn.net/base/image/c4fa18ecef2f67780615a3fb407cb7e315260c4155f48d0a982f93ed4a62510f?w=1624&amp;h=979" alt="جلب الحبيب الغائب"></div>
         <div class="srv-body">
           <h3>جلب الحبيب الغائب</h3>
-          <p>حبيبك بعيد عنك ومش قادر تنساه؟ الشيخة جواهر تملك أسرار روحانية لجلب الحبيب مهما كان بعيداً وإعادته إليك خاضعاً محباً. نتائج خلال أيام معدودة بإذن الله. الدفع بعد النتيجة فقط!</p>
-          <a class="srv-link" href="https://wa.me/966543252804?text=%D8%AC%D9%84%D8%A8%20%D8%A7%D9%84%D8%AD%D8%A8%D9%8A%D8%A8" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> تواصل الآن</a>
+          <p>جلب الحبيب مهما كان بعيداً وإعادته خاضعاً محباً — نتائج سريعة بإذن الله</p>
+          <span class="srv-more"><i class="fas fa-arrow-left"></i> التفاصيل</span>
         </div>
       </div>
 
-      <div class="srv-card">
-        <div class="srv-imgw"><img src="https://pfst.cf2.poecdn.net/base/image/17c73afa19091018f176c0a3f3ddebb7840b2c4624b7adbf92b1471d1ea53138?w=1624&amp;h=979" alt="ابطال السحر السفلي"></div>
+      <div class="srv-card" onclick="showPage('srv-sihr')">
+        <div class="srv-imgw"><img src="https://pfst.cf2.poecdn.net/base/image/17c73afa19091018f176c0a3f3ddebb7840b2c4624b7adbf92b1471d1ea53138?w=1624&amp;h=979" alt="إبطال السحر"></div>
         <div class="srv-body">
           <h3>إبطال السحر السفلي والأسود</h3>
-          <p>تشعر بثقل وضيق وأمور غير طبيعية في حياتك؟ قد تكون مسحوراً! الشيخة جواهر متخصصة في كشف وإبطال جميع أنواع السحر بالطرق الروحانية القوية. تخلّص من السحر نهائياً بإذن الله.</p>
-          <a class="srv-link" href="https://wa.me/966543252804?text=%D8%A7%D8%A8%D8%B7%D8%A7%D9%84%20%D8%A7%D9%84%D8%B3%D8%AD%D8%B1" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> تواصل الآن</a>
+          <p>كشف وإبطال جميع أنواع السحر بأعمال روحانية قوية — تخلّص نهائياً</p>
+          <span class="srv-more"><i class="fas fa-arrow-left"></i> التفاصيل</span>
         </div>
       </div>
 
-      <div class="srv-card">
+      <div class="srv-card" onclick="showPage('srv-zawj')">
         <div class="srv-imgw"><img src="https://pfst.cf2.poecdn.net/base/image/e329d6df91746bae4a06910eb8fb51c730f840e7db3d110ae98d76f98ec4ba93?w=1624&amp;h=979" alt="الإصلاح بين الزوجين"></div>
         <div class="srv-body">
           <h3>الإصلاح بين الزوجين</h3>
-          <p>بيتك على وشك الانهيار؟ المشاكل الزوجية لا تنتهي؟ بأعمال روحانية مباركة نعيد المحبة والمودة بينكم ونحصّن بيتكم من الحسد والعين. لا تخسر عائلتك — تواصل الآن والدفع بعد النتيجة!</p>
-          <a class="srv-link" href="https://wa.me/966543252804?text=%D8%A7%D9%84%D8%A7%D8%B5%D9%84%D8%A7%D8%AD%20%D8%A8%D9%8A%D9%86%20%D8%A7%D9%84%D8%B2%D9%88%D8%AC%D9%8A%D9%86" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> تواصل الآن</a>
+          <p>إعادة المحبة والمودة بين الأزواج وحل المشاكل الأسرية</p>
+          <span class="srv-more"><i class="fas fa-arrow-left"></i> التفاصيل</span>
         </div>
       </div>
 
-      <div class="srv-card">
+      <div class="srv-card" onclick="showPage('srv-qareen')">
         <div class="srv-imgw"><img src="https://pfst.cf2.poecdn.net/base/image/016d45f8fe5eb810c12a6134ab328ddd5682ad1d7c97c37dd4178766284b6a69?w=1624&amp;h=979" alt="السيطرة على القرين"></div>
         <div class="srv-body">
           <h3>السيطرة على القرين وإخضاع الحبيب</h3>
-          <p>حبيبك عنيد ولا يسمع كلامك؟ بأعمال روحانية خاصة نجعل حبيبك خاضعاً لك ومطيعاً لكل ما تريد. نتائج سريعة ومضمونة بإذن الله تعالى. تواصل الآن!</p>
-          <a class="srv-link" href="https://wa.me/966543252804?text=%D8%A7%D8%AE%D8%B6%D8%A7%D8%B9%20%D8%A7%D9%84%D8%AD%D8%A8%D9%8A%D8%A8" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> تواصل الآن</a>
+          <p>أعمال روحانية لإخضاع الحبيب العنيد — نتائج مضمونة</p>
+          <span class="srv-more"><i class="fas fa-arrow-left"></i> التفاصيل</span>
         </div>
       </div>
 
-      <div class="srv-card">
+      <div class="srv-card" onclick="showPage('srv-khasm')">
         <div class="srv-imgw"><img src="https://pfst.cf2.poecdn.net/base/image/0b715b40170c2d1a6870ba6bdfc9b78d670b9a54e1a9e4cd1b8420e6c0c3567f?w=1624&amp;h=979" alt="الإصلاح بين المتخاصمين"></div>
         <div class="srv-body">
           <h3>الإصلاح بين المتخاصمين</h3>
-          <p>خلاف بينك وبين شخص عزيز؟ فرقة وقطيعة رحم؟ نعيد الوصال والمحبة بين المتخاصمين بأعمال روحانية قوية. لا تدع الخصام يدمّر علاقاتك — تواصل الآن!</p>
-          <a class="srv-link" href="https://wa.me/966543252804?text=%D8%A7%D9%84%D8%A7%D8%B5%D9%84%D8%A7%D8%AD%20%D8%A8%D9%8A%D9%86%20%D8%A7%D9%84%D9%85%D8%AA%D8%AE%D8%A7%D8%B5%D9%85%D9%8A%D9%86" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> تواصل الآن</a>
+          <p>إعادة الوصال والمحبة بين المتخاصمين والأهل</p>
+          <span class="srv-more"><i class="fas fa-arrow-left"></i> التفاصيل</span>
         </div>
       </div>
 
-      <div class="srv-card">
+      <div class="srv-card" onclick="showPage('srv-shamaa')">
         <div class="srv-imgw"><img src="https://pfst.cf2.poecdn.net/base/image/79df49159483d86884807dd6f71fa24f7123bf660d5f57ef36dd04667b31b0b0?w=1624&amp;h=979" alt="جلب الحبيب بالشمع"></div>
         <div class="srv-body">
           <h3>جلب الحبيب بالشمع</h3>
-          <p>من أقوى الأعمال الروحانية وأسرعها نتيجة. جلب الحبيب بأعمال الشمع الروحانية المجرّبة والمضمونة. نتائج خلال ساعات بإذن الله تعالى. الدفع بعد ظهور النتيجة فقط!</p>
-          <a class="srv-link" href="https://wa.me/966543252804?text=%D8%AC%D9%84%D8%A8%20%D8%A8%D8%A7%D9%84%D8%B4%D9%85%D8%B9" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> تواصل الآن</a>
+          <p>من أقوى وأسرع الأعمال الروحانية — نتائج خلال ساعات</p>
+          <span class="srv-more"><i class="fas fa-arrow-left"></i> التفاصيل</span>
         </div>
       </div>
 
-      <div class="srv-card">
+      <div class="srv-card" onclick="showPage('srv-nasib')">
         <div class="srv-imgw"><img src="https://pfst.cf2.poecdn.net/base/image/cc1a3a2038c14c0f57f0a8417aec84c4bd721ad6b92b78f25f313170ed142412?w=1624&amp;h=979" alt="تيسير زواج العانس"></div>
         <div class="srv-body">
           <h3>تيسير زواج العانس وفتح النصيب</h3>
-          <p>العمر يمضي والنصيب متأخر؟ لا تقلق! بأعمال روحانية مباركة نفتح لك نصيبك ونيسّر أمور زواجك. كثير من البنات تزوّجن بعد سنوات من الانتظار. الدفع بعد تحقّق النتيجة!</p>
-          <a class="srv-link" href="https://wa.me/966543252804?text=%D8%AA%D9%8A%D8%B3%D9%8A%D8%B1%20%D8%A7%D9%84%D8%B2%D9%88%D8%A7%D8%AC" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> تواصل الآن</a>
+          <p>فتح النصيب المغلق وتيسير أمور الزواج بإذن الله</p>
+          <span class="srv-more"><i class="fas fa-arrow-left"></i> التفاصيل</span>
         </div>
       </div>
 
     </div>
-  </div>
+  </section>
+  <div class="guarantee"><div class="guarantee-box"><span class="guarantee-icon">✦</span><h3 class="shimmer">نتائج مضمونة بإذن الله تعالى</h3><p>خبرة سنوات طويلة في العلاج الروحاني — مئات الحالات الناجحة تشهد على صدق أعمالنا.</p></div></div>
+  <div class="orn"></div>
+  <footer class="footer"><p>✦ الشيخة جواهر الشمري — جميع الحقوق محفوظة ✦</p></footer>
+</div>
 
-  <div class="guarantee">
-    <div class="guarantee-box">
-      <span class="guarantee-icon">💰</span>
-      <h3 class="shimmer">جميع الخدمات — الدفع بعد النتيجة</h3>
-      <p>لا نطلب مبالغ مقدّمة لأننا واثقون بأعمالنا. ادفع فقط عندما ترى النتيجة بعينك. هذا عهدنا وضماننا لك.</p>
+<!-- ===== SERVICE DETAIL: تنزيل الأموال ===== -->
+<div class="page" id="page-srv-money">
+  <div class="orn"></div>
+  <div class="sdetail">
+    <span class="back-btn" onclick="showPage('services')"><i class="fas fa-arrow-right"></i> رجوع للخدمات</span>
+    <img class="sdetail-img" src="https://pfst.cf2.poecdn.net/base/image/07bf03e1326646360d5ca4c799162efe1508dc13c15abb5689414cfc4248e188?w=1624&amp;h=979" alt="تنزيل الأموال">
+    <div class="sdetail-box">
+      <h2 class="shimmer">تنزيل الأموال وفتح أبواب الرزق</h2>
+      <p>هل تعاني من ضيق الرزق وتراكم الديون؟ هل جرّبت كل الطرق ولم تنجح؟ هل تشعر أن أبواب المال مغلقة في وجهك مهما فعلت؟</p>
+      <p>الشيخة جواهر الشمري تقدّم لك الحل الروحاني الفعّال والمجرّب لتنزيل الأموال وفتح أبواب الرزق الواسعة. بفضل الله تعالى، عالجت مئات الحالات التي كانت تعاني من ضيق مالي شديد، وتحوّلت حياتهم بالكامل.</p>
+      <ul>
+        <li><i class="fas fa-check-circle"></i> فتح أبواب الرزق المغلقة وجلب البركة في المال</li>
+        <li><i class="fas fa-check-circle"></i> تنزيل الأموال من مصادر غير متوقعة بإذن الله</li>
+        <li><i class="fas fa-check-circle"></i> علاج روحاني لمن يعاني من تعسّر الأحوال المادية</li>
+        <li><i class="fas fa-check-circle"></i> تحصين المال والتجارة من الحسد والعين</li>
+        <li><i class="fas fa-check-circle"></i> نتائج ملموسة خلال أيام معدودة</li>
+        <li><i class="fas fa-check-circle"></i> استشارة مجانية — تواصل الآن بدون تردّد</li>
+      </ul>
+      <p>لا تنتظر أكثر! كل يوم تأخير هو يوم ضائع من حياتك. تواصل الآن مع الشيخة جواهر واحصل على استشارة مجانية فورية!</p>
     </div>
+    <div class="sdetail-cta"><a href="https://wa.me/966543252804?text=%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AA%D9%86%D8%B2%D9%8A%D9%84%20%D8%A7%D9%84%D8%A3%D9%85%D9%88%D8%A7%D9%84" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> تواصل الآن عبر واتساب</a></div>
   </div>
-</section>
+  <div class="orn"></div>
+  <footer class="footer"><p>✦ الشيخة جواهر الشمري — جميع الحقوق محفوظة ✦</p></footer>
+</div>
 
-<div class="orn"></div>
+<!-- ===== SERVICE DETAIL: جلب الحبيب ===== -->
+<div class="page" id="page-srv-jalb">
+  <div class="orn"></div>
+  <div class="sdetail">
+    <span class="back-btn" onclick="showPage('services')"><i class="fas fa-arrow-right"></i> رجوع للخدمات</span>
+    <img class="sdetail-img" src="https://pfst.cf2.poecdn.net/base/image/c4fa18ecef2f67780615a3fb407cb7e315260c4155f48d0a982f93ed4a62510f?w=1624&amp;h=979" alt="جلب الحبيب">
+    <div class="sdetail-box">
+      <h2 class="shimmer">جلب الحبيب الغائب</h2>
+      <p>حبيبك تركك وابتعد عنك؟ مش قادر تنساه وحياتك توقفت بدونه؟ لا تستسلم! الشيخة جواهر الشمري تملك أسرار روحانية قوية لجلب الحبيب مهما كان بعيداً.</p>
+      <p>بخبرة سنوات طويلة في الأعمال الروحانية، نجحت الشيخة جواهر في إعادة مئات الأحبة لبعضهم. حبيبك سيعود إليك خاضعاً محباً ولن يفكر بالابتعاد مرة أخرى بإذن الله.</p>
+      <ul>
+        <li><i class="fas fa-check-circle"></i> جلب الحبيب البعيد مهما كانت المسافة</li>
+        <li><i class="fas fa-check-circle"></i> إعادة الحبيب الغاضب والنادم</li>
+        <li><i class="fas fa-check-circle"></i> جعل الحبيب خاضعاً ومحباً وتابعاً لك</li>
+        <li><i class="fas fa-check-circle"></i> تقوية المحبة والتعلّق بينكم</li>
+        <li><i class="fas fa-check-circle"></i> نتائج خلال أيام معدودة بإذن الله</li>
+        <li><i class="fas fa-check-circle"></i> استشارة مجانية — تواصل الآن بدون تردّد</li>
+      </ul>
+      <p>لا تضيّع وقتك في الحزن والألم. خذ الخطوة الأولى الآن وتواصل مع الشيخة جواهر — الاستشارة مجانية!</p>
+    </div>
+    <div class="sdetail-cta"><a href="https://wa.me/966543252804?text=%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AC%D9%84%D8%A8%20%D8%A7%D9%84%D8%AD%D8%A8%D9%8A%D8%A8" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> تواصل الآن عبر واتساب</a></div>
+  </div>
+  <div class="orn"></div>
+  <footer class="footer"><p>✦ الشيخة جواهر الشمري — جميع الحقوق محفوظة ✦</p></footer>
+</div>
 
-<!-- ===== ABOUT ===== -->
-<section id="about">
+<!-- ===== SERVICE DETAIL: إبطال السحر ===== -->
+<div class="page" id="page-srv-sihr">
+  <div class="orn"></div>
+  <div class="sdetail">
+    <span class="back-btn" onclick="showPage('services')"><i class="fas fa-arrow-right"></i> رجوع للخدمات</span>
+    <img class="sdetail-img" src="https://pfst.cf2.poecdn.net/base/image/17c73afa19091018f176c0a3f3ddebb7840b2c4624b7adbf92b1471d1ea53138?w=1624&amp;h=979" alt="إبطال السحر">
+    <div class="sdetail-box">
+      <h2 class="shimmer">إبطال السحر السفلي والأسود</h2>
+      <p>تشعر بضيق غير طبيعي؟ أمورك معطّلة بدون سبب واضح؟ نفور مفاجئ من الناس أو من شريك حياتك؟ قد تكون ضحية سحر!</p>
+      <p>الشيخة جواهر الشمري متخصصة في كشف جميع أنواع السحر وإبطالها نهائياً. سواء كان سحراً سفلياً أو أسود أو مأكولاً أو مرشوشاً — لدينا العلاج الروحاني القوي لتحريرك بإذن الله.</p>
+      <ul>
+        <li><i class="fas fa-check-circle"></i> كشف السحر وتحديد نوعه ومكانه</li>
+        <li><i class="fas fa-check-circle"></i> إبطال السحر السفلي والأسود نهائياً</li>
+        <li><i class="fas fa-check-circle"></i> فك سحر التفريق بين الأزواج</li>
+        <li><i class="fas fa-check-circle"></i> علاج سحر تعطيل الزواج والرزق</li>
+        <li><i class="fas fa-check-circle"></i> تحصين شامل ضد السحر مستقبلاً</li>
+        <li><i class="fas fa-check-circle"></i> استشارة مجانية — تواصل الآن بدون تردّد</li>
+      </ul>
+      <p>لا تعش في معاناة أكثر! السحر يمكن أن يدمّر حياتك بالكامل إذا لم يُعالج. تواصل الآن واستعد حياتك الطبيعية!</p>
+    </div>
+    <div class="sdetail-cta"><a href="https://wa.me/966543252804?text=%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%A7%D8%A8%D8%B7%D8%A7%D9%84%20%D8%A7%D9%84%D8%B3%D8%AD%D8%B1" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> تواصل الآن عبر واتساب</a></div>
+  </div>
+  <div class="orn"></div>
+  <footer class="footer"><p>✦ الشيخة جواهر الشمري — جميع الحقوق محفوظة ✦</p></footer>
+</div>
+
+<!-- ===== SERVICE DETAIL: الإصلاح بين الزوجين ===== -->
+<div class="page" id="page-srv-zawj">
+  <div class="orn"></div>
+  <div class="sdetail">
+    <span class="back-btn" onclick="showPage('services')"><i class="fas fa-arrow-right"></i> رجوع للخدمات</span>
+    <img class="sdetail-img" src="https://pfst.cf2.poecdn.net/base/image/e329d6df91746bae4a06910eb8fb51c730f840e7db3d110ae98d76f98ec4ba93?w=1624&amp;h=979" alt="الإصلاح بين الزوجين">
+    <div class="sdetail-box">
+      <h2 class="shimmer">الإصلاح بين الزوجين</h2>
+      <p>بيتك على وشك الانهيار؟ المشاكل بينك وبين شريك حياتك ما لها نهاية؟ النفور والبرود يسيطر على علاقتكم؟</p>
+      <p>الشيخة جواهر تقدّم لك علاجاً روحانياً شاملاً لإعادة المحبة والمودة والرحمة بين الزوجين. لا تخسر عائلتك وبيتك — الحل موجود بإذن الله!</p>
+      <ul>
+        <li><i class="fas fa-check-circle"></i> إعادة المحبة والألفة بين الزوجين</li>
+        <li><i class="fas fa-check-circle"></i> علاج النفور والكراهية بين الأزواج</li>
+        <li><i class="fas fa-check-circle"></i> إنهاء المشاكل الزوجية المتكررة</li>
+        <li><i class="fas fa-check-circle"></i> تحصين البيت من الحسد والعين</li>
+        <li><i class="fas fa-check-circle"></i> منع الطلاق وإنقاذ الأسرة</li>
+        <li><i class="fas fa-check-circle"></i> استشارة مجانية — تواصل الآن بدون تردّد</li>
+      </ul>
+      <p>أطفالك يحتاجون أسرة مستقرة. لا تتأخر — تواصل الآن مع الشيخة جواهر وأنقذ بيتك!</p>
+    </div>
+    <div class="sdetail-cta"><a href="https://wa.me/966543252804?text=%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D8%A7%D8%B5%D9%84%D8%A7%D8%AD%20%D8%A8%D9%8A%D9%86%20%D8%A7%D9%84%D8%B2%D9%88%D8%AC%D9%8A%D9%86" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> تواصل الآن عبر واتساب</a></div>
+  </div>
+  <div class="orn"></div>
+  <footer class="footer"><p>✦ الشيخة جواهر الشمري — جميع الحقوق محفوظة ✦</p></footer>
+</div>
+
+<!-- ===== SERVICE DETAIL: القرين وإخضاع الحبيب ===== -->
+<div class="page" id="page-srv-qareen">
+  <div class="orn"></div>
+  <div class="sdetail">
+    <span class="back-btn" onclick="showPage('services')"><i class="fas fa-arrow-right"></i> رجوع للخدمات</span>
+    <img class="sdetail-img" src="https://pfst.cf2.poecdn.net/base/image/016d45f8fe5eb810c12a6134ab328ddd5682ad1d7c97c37dd4178766284b6a69?w=1624&amp;h=979" alt="السيطرة على القرين">
+    <div class="sdetail-box">
+      <h2 class="shimmer">السيطرة على القرين وإخضاع الحبيب</h2>
+      <p>حبيبك عنيد ولا يسمع كلامك؟ يتجاهلك ولا يهتم بمشاعرك؟ عايز تخليه ما يقدر يعيش بدونك؟</p>
+      <p>بأعمال روحانية خاصة ومتقدّمة، تقوم الشيخة جواهر بإخضاع الحبيب العنيد وجعله مطيعاً لك في كل شيء. نتائج سريعة وملموسة بإذن الله تعالى.</p>
+      <ul>
+        <li><i class="fas fa-check-circle"></i> إخضاع الحبيب العنيد وجعله مطيعاً</li>
+        <li><i class="fas fa-check-circle"></i> السيطرة على القرين وتسخيره</li>
+        <li><i class="fas fa-check-circle"></i> ربط الحبيب وعدم قدرته على البعد عنك</li>
+        <li><i class="fas fa-check-circle"></i> زيادة التعلّق والمحبة الشديدة</li>
+        <li><i class="fas fa-check-circle"></i> نتائج سريعة خلال أيام قليلة</li>
+        <li><i class="fas fa-check-circle"></i> استشارة مجانية — تواصل الآن بدون تردّد</li>
+      </ul>
+      <p>خذ زمام الأمور بيدك! لا تنتظر أكثر — تواصل الآن مع الشيخة جواهر وغيّر الوضع لصالحك!</p>
+    </div>
+    <div class="sdetail-cta"><a href="https://wa.me/966543252804?text=%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%A7%D8%AE%D8%B6%D8%A7%D8%B9%20%D8%A7%D9%84%D8%AD%D8%A8%D9%8A%D8%A8" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> تواصل الآن عبر واتساب</a></div>
+  </div>
+  <div class="orn"></div>
+  <footer class="footer"><p>✦ الشيخة جواهر الشمري — جميع الحقوق محفوظة ✦</p></footer>
+</div>
+
+<!-- ===== SERVICE DETAIL: الإصلاح بين المتخاصمين ===== -->
+<div class="page" id="page-srv-khasm">
+  <div class="orn"></div>
+  <div class="sdetail">
+    <span class="back-btn" onclick="showPage('services')"><i class="fas fa-arrow-right"></i> رجوع للخدمات</span>
+    <img class="sdetail-img" src="https://pfst.cf2.poecdn.net/base/image/0b715b40170c2d1a6870ba6bdfc9b78d670b9a54e1a9e4cd1b8420e6c0c3567f?w=1624&amp;h=979" alt="الإصلاح بين المتخاصمين">
+    <div class="sdetail-box">
+      <h2 class="shimmer">الإصلاح بين المتخاصمين</h2>
+      <p>خلاف بينك وبين شخص عزيز على قلبك؟ قطيعة رحم مع أهلك أو أصدقائك؟ فرقة ما لها سبب واضح؟</p>
+      <p>الشيخة جواهر تعيد الوصال والمحبة بين المتخاصمين بأعمال روحانية مباركة. لا تدع الخصام يدمّر أجمل علاقاتك — الحل بسيط وسريع بإذن الله.</p>
+      <ul>
+        <li><i class="fas fa-check-circle"></i> الإصلاح بين الأهل والأقارب المتخاصمين</li>
+        <li><i class="fas fa-check-circle"></i> إنهاء القطيعة وإعادة التواصل</li>
+        <li><i class="fas fa-check-circle"></i> إزالة الكراهية والبغض من القلوب</li>
+        <li><i class="fas fa-check-circle"></i> تقوية الروابط العائلية والصداقات</li>
+        <li><i class="fas fa-check-circle"></i> نتائج سريعة بإذن الله تعالى</li>
+        <li><i class="fas fa-check-circle"></i> استشارة مجانية — تواصل الآن بدون تردّد</li>
+      </ul>
+      <p>صلة الرحم من أعظم الأعمال. تواصل الآن مع الشيخة جواهر واستعد علاقاتك الثمينة!</p>
+    </div>
+    <div class="sdetail-cta"><a href="https://wa.me/966543252804?text=%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D8%A7%D8%B5%D9%84%D8%A7%D8%AD%20%D8%A8%D9%8A%D9%86%20%D8%A7%D9%84%D9%85%D8%AA%D8%AE%D8%A7%D8%B5%D9%85%D9%8A%D9%86" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> تواصل الآن عبر واتساب</a></div>
+  </div>
+  <div class="orn"></div>
+  <footer class="footer"><p>✦ الشيخة جواهر الشمري — جميع الحقوق محفوظة ✦</p></footer>
+</div>
+
+<!-- ===== SERVICE DETAIL: جلب بالشمع ===== -->
+<div class="page" id="page-srv-shamaa">
+  <div class="orn"></div>
+  <div class="sdetail">
+    <span class="back-btn" onclick="showPage('services')"><i class="fas fa-arrow-right"></i> رجوع للخدمات</span>
+    <img class="sdetail-img" src="https://pfst.cf2.poecdn.net/base/image/79df49159483d86884807dd6f71fa24f7123bf660d5f57ef36dd04667b31b0b0?w=1624&amp;h=979" alt="جلب الحبيب بالشمع">
+    <div class="sdetail-box">
+      <h2 class="shimmer">جلب الحبيب بالشمع</h2>
+      <p>تبحث عن أسرع طريقة لجلب حبيبك؟ أعمال الشمع الروحانية من أقوى وأسرع الطرق لجلب الحبيب — نتائج خلال ساعات!</p>
+      <p>الشيخة جواهر تستخدم أعمال الشمع الروحانية المجرّبة والمضمونة بإذن الله. هذه الأعمال من أقدم وأقوى الأسرار الروحانية التي أثبتت فعاليتها مع مئات الحالات.</p>
+      <ul>
+        <li><i class="fas fa-check-circle"></i> جلب الحبيب بالشمع خلال ساعات معدودة</li>
+        <li><i class="fas fa-check-circle"></i> تسخير قوة الشمع الروحانية للمحبة</li>
+        <li><i class="fas fa-check-circle"></i> ربط الحبيب بالشمع ربطاً قوياً دائماً</li>
+        <li><i class="fas fa-check-circle"></i> من أسرع الأعمال الروحانية نتيجةً</li>
+        <li><i class="fas fa-check-circle"></i> أعمال مجرّبة ومضمونة بإذن الله</li>
+        <li><i class="fas fa-check-circle"></i> استشارة مجانية — تواصل الآن بدون تردّد</li>
+      </ul>
+      <p>لا تضيّع الفرصة! تواصل الآن مع الشيخة جواهر وجرّب أسرع طريقة لجلب حبيبك بإذن الله!</p>
+    </div>
+    <div class="sdetail-cta"><a href="https://wa.me/966543252804?text=%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AC%D9%84%D8%A8%20%D8%A8%D8%A7%D9%84%D8%B4%D9%85%D8%B9" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> تواصل الآن عبر واتساب</a></div>
+  </div>
+  <div class="orn"></div>
+  <footer class="footer"><p>✦ الشيخة جواهر الشمري — جميع الحقوق محفوظة ✦</p></footer>
+</div>
+
+<!-- ===== SERVICE DETAIL: تيسير الزواج ===== -->
+<div class="page" id="page-srv-nasib">
+  <div class="orn"></div>
+  <div class="sdetail">
+    <span class="back-btn" onclick="showPage('services')"><i class="fas fa-arrow-right"></i> رجوع للخدمات</span>
+    <img class="sdetail-img" src="https://pfst.cf2.poecdn.net/base/image/cc1a3a2038c14c0f57f0a8417aec84c4bd721ad6b92b78f25f313170ed142412?w=1624&amp;h=979" alt="تيسير الزواج">
+    <div class="sdetail-box">
+      <h2 class="shimmer">تيسير زواج العانس وفتح النصيب</h2>
+      <p>العمر يمضي والنصيب ما جا؟ كل ما يتقدّم حد ينصرف بدون سبب؟ تشعرين أن نصيبك مقفل؟</p>
+      <p>الشيخة جواهر الشمري متخصصة في فتح النصيب المغلق وتيسير أمور الزواج بأعمال روحانية شرعية مباركة. بفضل الله، مئات البنات تزوّجن بعد سنوات طويلة من الانتظار.</p>
+      <ul>
+        <li><i class="fas fa-check-circle"></i> فتح النصيب المغلق وتسهيل القبول</li>
+        <li><i class="fas fa-check-circle"></i> تيسير أمور الزواج وإزالة العوائق</li>
+        <li><i class="fas fa-check-circle"></i> جلب خاطب مناسب بإذن الله</li>
+        <li><i class="fas fa-check-circle"></i> إبطال سحر تعطيل الزواج إن وُجد</li>
+        <li><i class="fas fa-check-circle"></i> تحصين من الحسد والعين المعطّلة</li>
+        <li><i class="fas fa-check-circle"></i> استشارة مجانية — تواصل الآن بدون تردّد</li>
+      </ul>
+      <p>لا تيأسي! نصيبك قادم بإذن الله. تواصلي الآن مع الشيخة جواهر وخذي الخطوة الأولى نحو حياة جديدة!</p>
+    </div>
+    <div class="sdetail-cta"><a href="https://wa.me/966543252804?text=%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AA%D9%8A%D8%B3%D9%8A%D8%B1%20%D8%A7%D9%84%D8%B2%D9%88%D8%A7%D8%AC" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> تواصلي الآن عبر واتساب</a></div>
+  </div>
+  <div class="orn"></div>
+  <footer class="footer"><p>✦ الشيخة جواهر الشمري — جميع الحقوق محفوظة ✦</p></footer>
+</div>
+
+<!-- ===== PAGE: ABOUT ===== -->
+<div class="page" id="page-about">
+  <div class="orn"></div>
   <div class="stitle"><h2 class="shimmer">من هي الشيخة جواهر؟</h2><div class="stitle-line"></div></div>
-
-  <div class="about-sec">
-    <img class="about-img" src="https://pfst.cf2.poecdn.net/base/image/799888fd1f0003f4052a5800cd256040c62be0a30fa155c32000584b46b552a0?w=1200&amp;h=461" alt="الشيخة جواهر">
-    <div class="about-box">
-      <h3>الشيخة جواهر الشمري</h3>
-      <p>خبيرة في العلوم الروحانية والأعمال الفلكية — خبرة تمتد لسنوات طويلة في مساعدة الناس وحل مشاكلهم بإذن الله تعالى.</p>
-      <p>تخصّصت الشيخة جواهر في تنزيل الأموال وفتح أبواب الرزق، وجلب الحبيب، وإبطال السحر، وتيسير الزواج، والإصلاح بين الناس. عالجت مئات الحالات بنجاح تام بفضل الله.</p>
-      <p>ما يميّز الشيخة جواهر هو مبدأ <strong style="color:var(--gold-s);">الدفع بعد النتيجة</strong>. لا تطلب أي مبلغ مقدّم، وهذا دليل ثقتها المطلقة في أعمالها الروحانية. لا تخاطر بأموالك — جرّب بنفسك وادفع فقط عند رؤية النتيجة.</p>
+  <section style="max-width:800px;margin:0 auto;padding:10px 20px 28px;">
+    <div style="text-align:center;margin-bottom:22px;">
+      <img src="https://pfst.cf2.poecdn.net/base/image/799888fd1f0003f4052a5800cd256040c62be0a30fa155c32000584b46b552a0?w=1200&amp;h=461" alt="الشيخة جواهر" style="width:min(90%,480px);border-radius:12px;border:2px solid var(--gold);box-shadow:0 0 30px rgba(212,168,53,0.2);">
     </div>
-  </div>
-
-  <!-- TESTIMONIALS -->
+    <div style="background:linear-gradient(150deg,var(--bk2),#090909);border:1.5px solid rgba(212,168,53,0.35);border-radius:14px;padding:26px 18px;line-height:2.2;">
+      <h3 style="font-family:'Aref Ruqaa',serif;font-size:clamp(1.3rem,4vw,1.8rem);color:var(--gs);text-align:center;margin-bottom:14px;">الشيخة جواهر الشمري</h3>
+      <p style="font-size:clamp(.9rem,2.5vw,1.04rem);color:var(--gold);text-align:center;margin-bottom:18px;">خبيرة في العلوم الروحانية والأعمال الفلكية — خبرة تمتد لسنوات طويلة في مساعدة الناس وحل مشاكلهم بإذن الله تعالى.</p>
+      <p style="font-size:clamp(.9rem,2.5vw,1.04rem);color:var(--gold);text-align:center;margin-bottom:18px;">تخصّصت الشيخة جواهر في تنزيل الأموال وفتح أبواب الرزق، وجلب الحبيب، وإبطال السحر، وتيسير الزواج، والإصلاح بين الناس. عالجت مئات الحالات بنجاح تام بفضل الله.</p>
+      <p style="font-size:clamp(.9rem,2.5vw,1.04rem);color:var(--gold);text-align:center;margin-bottom:0;">ما يميّز الشيخة جواهر هو <strong style="color:var(--gs);">صدقها وأمانتها</strong> في التعامل مع جميع الحالات، وثقتها المطلقة في أعمالها الروحانية المجرّبة.</p>
+    </div>
+  </section>
   <div class="stitle"><h2>ماذا يقول عملاؤنا؟</h2><div class="stitle-line"></div></div>
   <div class="testi-grid">
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <p>«والله ما صدّقت! كنت أعاني من ضيق شديد في الرزق وبعد ما تواصلت مع الشيخة جواهر تغيّرت حياتي بالكامل. الأموال بدأت تنزل من حيث لا أحتسب. الله يجزاها خير.»</p>
-      <div class="testi-name">— أم محمد، الرياض</div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <p>«حبيبي هجرني سنتين وما قدرت أنساه. تواصلت مع الشيخة جواهر ورجعلي خلال أيام خاضع ومحب. أحسن قرار اتخذته في حياتي. والدفع بعد النتيجة أعطاني ثقة كبيرة.»</p>
-      <div class="testi-name">— سارة، جدة</div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <p>«كنت مسحور وحياتي كانت جحيم. الشيخة جواهر كشفت السحر وأبطلته بالكامل. الحمد لله رجعت حياتي طبيعية. أنصح الكل يتواصل معها — صادقة وأمينة.»</p>
-      <div class="testi-name">— أبو عبدالله، الكويت</div>
-    </div>
+    <div class="testi-card"><div class="testi-stars">★★★★★</div><p>«كنت أعاني من ضيق شديد في الرزق وبعد ما تواصلت مع الشيخة جواهر تغيّرت حياتي بالكامل. الأموال بدأت تنزل من حيث لا أحتسب.»</p><div class="testi-name">— أم محمد، الرياض</div></div>
+    <div class="testi-card"><div class="testi-stars">★★★★★</div><p>«حبيبي هجرني سنتين. تواصلت مع الشيخة جواهر ورجعلي خلال أيام خاضع ومحب. أحسن قرار اتخذته في حياتي.»</p><div class="testi-name">— سارة، جدة</div></div>
+    <div class="testi-card"><div class="testi-stars">★★★★★</div><p>«كنت مسحور وحياتي كانت جحيم. الشيخة جواهر كشفت السحر وأبطلته بالكامل. رجعت حياتي طبيعية. صادقة وأمينة.»</p><div class="testi-name">— أبو عبدالله، الكويت</div></div>
   </div>
-</section>
+  <div class="orn"></div>
+  <footer class="footer"><p>✦ الشيخة جواهر الشمري — جميع الحقوق محفوظة ✦</p></footer>
+</div>
 
-<div class="orn"></div>
-
-<!-- ===== CONTACT ===== -->
-<section id="contact">
+<!-- ===== PAGE: CONTACT ===== -->
+<div class="page" id="page-contact">
+  <div class="orn"></div>
   <div class="stitle"><h2 class="shimmer">تواصل مع الشيخة جواهر</h2><div class="stitle-line"></div></div>
-
-  <div class="contact">
+  <section class="contact">
     <div class="contact-box">
       <div class="contact-icon">☪</div>
       <h2 class="shimmer">نحن هنا لمساعدتك</h2>
-      <p>لا تتردّد في التواصل معنا. الاستشارة الأولى مجانية والدفع يكون فقط بعد تحقّق النتيجة بإذن الله. نعمل على مدار الساعة لخدمتك.</p>
+      <p>لا تتردّد في التواصل معنا. الاستشارة الأولى مجانية ونعمل على مدار الساعة لخدمتك بإذن الله تعالى.</p>
       <div class="contact-num">+966 543 252 804</div>
       <div class="contact-btns">
         <a class="btn-wa" href="https://wa.me/966543252804" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> واتساب</a>
         <a class="btn-call" href="tel:+966543252804"><i class="fas fa-phone"></i> اتصال مباشر</a>
       </div>
     </div>
-  </div>
-
-  <div class="features" style="margin-top:0;">
+  </section>
+  <div class="features" style="margin-top:10px;">
     <div class="feat-item"><i class="fas fa-clock"></i><span>متاحون على مدار الساعة</span></div>
     <div class="feat-item"><i class="fas fa-lock"></i><span>سرية تامة مضمونة</span></div>
-    <div class="feat-item"><i class="fas fa-money-bill-wave"></i><span>الدفع بعد النتيجة فقط</span></div>
+    <div class="feat-item"><i class="fas fa-headset"></i><span>استشارة مجانية فورية</span></div>
     <div class="feat-item"><i class="fas fa-globe"></i><span>نخدم جميع الدول العربية</span></div>
   </div>
+  <div class="guarantee" style="margin-top:18px;"><div class="guarantee-box"><span class="guarantee-icon">📞</span><h3>لا تتردّد — الخطوة الأولى تغيّر حياتك</h3><p>كل يوم تأخير هو يوم ضائع من حياتك. تواصل الآن مع الشيخة جواهر واحصل على استشارة مجانية فورية!</p></div></div>
+  <div class="orn"></div>
+  <footer class="footer"><p>✦ الشيخة جواهر الشمري — جميع الحقوق محفوظة ✦</p></footer>
+</div>
 
-  <div class="guarantee" style="margin-top:10px;">
-    <div class="guarantee-box">
-      <span class="guarantee-icon">📞</span>
-      <h3>لا تتردّد — الخطوة الأولى تغيّر حياتك</h3>
-      <p>كل يوم تأخير هو يوم ضائع من حياتك. تواصل الآن مع الشيخة جواهر واحصل على استشارة مجانية. الدفع بعد النتيجة — لا مخاطرة عليك!</p>
-    </div>
-  </div>
-</section>
-
-<div class="orn"></div>
-<footer class="footer"><p>✦ الشيخة جواهر الشمري — جميع الحقوق محفوظة ✦</p></footer>
-
-<!-- FLOATING WA -->
+<!-- WA FLOAT -->
 <a class="wa-float" href="https://wa.me/966543252804" target="_blank" rel="noopener" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
 
 <script>
 (function(){
   // Stars
   var sb=document.getElementById('starsBg');
-  if(sb){for(var i=0;i<45;i++){var s=document.createElement('div');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*3+'s';s.style.animationDuration=(2+Math.random()*3)+'s';var sz=1+Math.random()*2;s.style.width=sz+'px';s.style.height=sz+'px';sb.appendChild(s);}}
+  if(sb){for(var i=0;i<40;i++){var s=document.createElement('div');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*3+'s';s.style.animationDuration=(2+Math.random()*3)+'s';var sz=1+Math.random()*2;s.style.width=sz+'px';s.style.height=sz+'px';sb.appendChild(s);}}
 
-  // Active nav link on scroll
-  var sections=document.querySelectorAll('section[id]');
-  var navLinks=document.querySelectorAll('.nav-links a');
+  // Page map for nav highlighting
+  var navMap={home:'home',services:'services','srv-money':'services','srv-jalb':'services','srv-sihr':'services','srv-zawj':'services','srv-qareen':'services','srv-khasm':'services','srv-shamaa':'services','srv-nasib':'services',about:'about',contact:'contact'};
 
-  function updateActive(){
-    var scrollY=window.scrollY||window.pageYOffset;
-    var offset=80;
-    var current='home';
-    sections.forEach(function(sec){
-      if(sec.offsetTop - offset <= scrollY){
-        current=sec.getAttribute('id');
-      }
-    });
-    navLinks.forEach(function(link){
-      link.classList.remove('active');
-      if(link.getAttribute('href')==='#'+current){
-        link.classList.add('active');
-      }
-    });
+  // showPage - global
+  window.showPage=function(id){
+    var pages=document.querySelectorAll('.page');
+    var links=document.querySelectorAll('.nav-links a[data-page]');
+    pages.forEach(function(p){p.classList.remove('active');});
+    links.forEach(function(l){l.classList.remove('active');});
+    var target=document.getElementById('page-'+id);
+    if(target){
+      target.classList.add('active');
+      window.scrollTo({top:0,behavior:'instant'});
+      observeCards();
+    }
+    var navId=navMap[id]||id;
+    links.forEach(function(l){if(l.getAttribute('data-page')===navId)l.classList.add('active');});
+  };
+
+  // Hamburger menu
+  var hamburger=document.getElementById('hamburger');
+  var navLinks=document.getElementById('navLinks');
+  var navOverlay=document.getElementById('navOverlay');
+  window.toggleMenu=function(){
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+    navOverlay.classList.toggle('show');
+  };
+  function closeMenu(){
+    hamburger.classList.remove('open');
+    navLinks.classList.remove('open');
+    navOverlay.classList.remove('show');
   }
-  window.addEventListener('scroll',updateActive,{passive:true});
-  updateActive();
+
+  // Nav links
+  document.querySelectorAll('.nav-links a[data-page]').forEach(function(link){
+    link.addEventListener('click',function(e){
+      e.preventDefault();
+      closeMenu();
+      window.showPage(this.getAttribute('data-page'));
+    });
+  });
 
   // Card animations
-  var cards=document.querySelectorAll('.srv-card');
-  if('IntersectionObserver' in window){
+  function observeCards(){
+    var cards=document.querySelectorAll('.srv-card:not(.vis)');
+    if(!('IntersectionObserver' in window)){cards.forEach(function(c){c.classList.add('vis');});return;}
     var obs=new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if(entry.isIntersecting){
@@ -623,12 +754,10 @@ section[id]{scroll-margin-top:65px;}
       });
     },{threshold:0.12});
     cards.forEach(function(c){obs.observe(c);});
-  } else {
-    cards.forEach(function(c){c.classList.add('vis');});
   }
+  observeCards();
 })();
 </script>
-
 
 
 
